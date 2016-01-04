@@ -1,17 +1,17 @@
-package com.jaxforreal.jgame.Tiles;
+package com.jaxforreal.jgame.tile;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.GameManager;
+import com.sun.istack.internal.Nullable;
 
 public abstract class Tile {
     //All tiles in game here
-    public static final Tile GRASS = new Grass(null, 0);
-    public static final Tile WOOD = new Wood(null, 1);
 
+    /** ID is used to save tiles back to text format */
     public final int id;
     public GameManager gameManager;
 
-    public Tile(GameManager gameManager, int id) {
+    public Tile(@Nullable GameManager gameManager, int id) {
         this.gameManager = gameManager;
         this.id = id;
     }

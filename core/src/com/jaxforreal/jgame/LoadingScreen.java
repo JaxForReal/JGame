@@ -30,6 +30,7 @@ public class LoadingScreen extends ScreenAdapter {
         for (FileHandle tileFile : tilesFolder.list(".png")) {
             assetManager.load(tileFile.path(), Texture.class);
         }
+        assetManager.load("core/assets/test_animation.png", Texture.class);
 
         this.spriteBatch = new SpriteBatch();
     }

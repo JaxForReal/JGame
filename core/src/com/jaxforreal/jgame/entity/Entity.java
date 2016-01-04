@@ -1,4 +1,4 @@
-package com.jaxforreal.jgame.MapObjects;
+package com.jaxforreal.jgame.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.Direction;
