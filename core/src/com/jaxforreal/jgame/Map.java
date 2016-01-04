@@ -2,6 +2,7 @@ package com.jaxforreal.jgame;
 
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.MapObjects.Entity;
 import com.jaxforreal.jgame.Tiles.Tile;
@@ -62,6 +63,15 @@ public class Map {
         for (Entity object : tileMapObjects) {
             object.render(spriteBatch, mapX + (object.getTileX() * tileSize), mapY + (object.getTileY() * tileSize));
         }
+    }
+
+    //Note: this does not take into account x and y that map is rendered at...
+
+    /**
+     * assumes map is rendered at (0, 0). Take this into account!
+     */
+    public Vector2 tileCoordinatesToWorldCoordinates(int tileX, int tileY) {
+        return new Vector2(tileX * tileSize, tileY * tileSize);
     }
 
     public int getWidthInTiles() {
