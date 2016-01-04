@@ -44,7 +44,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public Entity clone() {
+    public Entity getClone() {
         return new Player(gameManager);
     }
 

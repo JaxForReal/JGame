@@ -65,6 +65,7 @@ public abstract class Entity {
         this.parentMap = parentMap;
     }
 
-    //clone the tilemapobject. copies all properties and metadata EXCEPT parentMap
-    public abstract Entity clone();
+    //clone the Entity. copies all properties and metadata EXCEPT parentMap
+    //note: named getClone(), not clone() because java.lang.Object's clone() is annoying and gives "call super.clone()" warning
+    public abstract Entity getClone();
 }

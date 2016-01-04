@@ -31,7 +31,7 @@ public class Zombie extends Entity {
     }
 
     @Override
-    public Entity clone() {
+    public Entity getClone() {
         return new Zombie(gameManager);
     }
 }
