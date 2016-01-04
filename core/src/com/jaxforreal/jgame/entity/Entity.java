@@ -1,6 +1,7 @@
 package com.jaxforreal.jgame.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
@@ -8,10 +9,11 @@ import com.jaxforreal.jgame.Map;
 public abstract class Entity {
     protected Map parentMap;
     protected GameManager gameManager;
-    private int tileX, tileY;
+    private Vector2 tilePosition;
 
     public Entity(GameManager gameManager) {
         this.gameManager = gameManager;
+        this.tilePosition = new Vector2();
     }
 
     /**
@@ -31,36 +33,25 @@ public abstract class Entity {
      */
     protected boolean tryMove(Direction direction) {
         //TODO possible optimization: no more object creation??
-        int newTileX = tileX + direction.x();
-        int newTileY = tileY + direction.y();
+        Vector2 newPos = new Vector2(
+                tilePosition.x + direction.x(),
+                tilePosition.y + direction.y());
 
-        //out of map bounds
-        if ((newTileX < 0) || (newTileY < 0) ||
-                (newTileX >= parentMap.getWidthInTiles()) || (newTileY >= parentMap.getHeightInTiles())) {
+        //check out of map bounds
+        if ((newPos.x < 0) || (newPos.y < 0) ||
+                (newPos.x >= parentMap.getWidthInTiles()) || (newPos.y >= parentMap.getHeightInTiles())) {
             return false;
         }
-        if (!parentMap.getTileAt(newTileX, newTileY).isSolid()) {
-            tileX = newTileX;
-            tileY = newTileY;
+        //if not solid, move to
+        if (!parentMap.getTileAt((int)newPos.x, (int)newPos.y).isSolid()) {
+            tilePosition.set(newPos);
             return true;
         }
         return false;
     }
 
-    public int getTileX() {
-        return tileX;
-    }
-
-    public void setTileX(int tileX) {
-        this.tileX = tileX;
-    }
-
-    public int getTileY() {
-        return tileY;
-    }
-
-    public void setTileY(int tileY) {
-        this.tileY = tileY;
+    public Vector2 getTilePosition(){
+        return tilePosition;
     }
 
     /**

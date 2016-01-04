@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jaxforreal.jgame.entity.Player;
@@ -20,6 +21,7 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch spriteBatch;
     private OrthographicCamera camera;
     private Viewport viewport;
+    private Vector2 temp;
 
     private Map map_test_;
     private Player player_test_;
@@ -30,6 +32,7 @@ public class GameScreen extends ScreenAdapter {
         this.spriteBatch = new SpriteBatch();
         this.camera = new OrthographicCamera();
         this.viewport = new FitViewport(3200, 1800, camera);
+        this.temp = new Vector2();
         gameManager = new GameManager();
         gameManager.assets = assetManager;
 
@@ -37,8 +40,7 @@ public class GameScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(inputMultiplexer);
         player_test_ = new Player(gameManager);
         inputMultiplexer.addProcessor(player_test_.inputProcessor);
-        player_test_.setTileX(0);
-        player_test_.setTileY(3);
+        player_test_.getTilePosition().set(1, 3);
 
         MapLoader mapLoader = new MapLoader(gameManager);
         map_test_ = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
@@ -55,7 +57,8 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         map_test_.update(delta);
-        camera.position.set(map_test_.tileCoordinatesToWorldCoordinates(player_test_.getTileX(), player_test_.getTileY()), 0);
+        temp.set(player_test_.getTilePosition());
+        camera.position.set(map_test_.tileToWorldCoords(temp), 0);
         camera.update();
 
         Gdx.gl.glClearColor(.1f, .1f, .1f, 1);

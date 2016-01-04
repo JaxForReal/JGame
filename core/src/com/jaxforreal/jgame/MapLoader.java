@@ -108,8 +108,9 @@ public class MapLoader {
             for (XmlReader.Element childObjectXml : objectXmlData.getChildrenByName("obj")) {
                 //get new object by cloning it from the String->Entity map
                 Entity newMapObject = objectIds.get(childObjectXml.get("type")).getClone();
-                newMapObject.setTileX(childObjectXml.getInt("x"));
-                newMapObject.setTileY(childObjectXml.getInt("y"));
+                newMapObject.getTilePosition().set(
+                        childObjectXml.getInt("x"),
+                        childObjectXml.getInt("y"));
                 map.addMapObject(newMapObject);
             }
 
@@ -123,19 +124,19 @@ public class MapLoader {
         String mapString = "";
         for (int iterX = 0; iterX < map.getWidthInTiles(); iterX++) {
             for (int iterY = 0; iterY < map.getHeightInTiles(); iterY++) {
-
+                //TODO
             }
         }
     }
 
     @Nullable
     public String getSaveNameById(int id) {
-        for(Tile valueTile : tileSaveNames.values()) {
-            if(valueTile.id == id){
+        for (Tile valueTile : tileSaveNames.values()) {
+            if (valueTile.id == id) {
 
                 //get key from valueTile
-                for(String key : tileSaveNames.keySet()) {
-                    if(tileSaveNames.get(key).equals(valueTile)) {
+                for (String key : tileSaveNames.keySet()) {
+                    if (tileSaveNames.get(key).equals(valueTile)) {
                         return key;
                     }
                 }
