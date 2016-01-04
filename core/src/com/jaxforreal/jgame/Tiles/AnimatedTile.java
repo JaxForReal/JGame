@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.GameManager;
 
 public abstract class AnimatedTile implements Tile {
+    /**
+     * child classes need to instantiate animation
+     */
     protected Animation animation;
     protected GameManager gameManager;
     private float animationStateTime;
