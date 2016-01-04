@@ -3,14 +3,14 @@ package com.jaxforreal.jgame.Tiles;
 import com.jaxforreal.jgame.GameManager;
 
 public class Grass extends SimpleTile {
-    public Grass(GameManager gameManager) {
-        super(gameManager);
+    public Grass(GameManager gameManager, int id) {
+        super(gameManager, id);
         texture = gameManager.assets.get("core/assets/tiles/grass_top.png");
     }
 
     @Override
     public Tile getClone() {
-        return new Grass(gameManager);
+        return new Grass(gameManager, id);
     }
 
     @Override
