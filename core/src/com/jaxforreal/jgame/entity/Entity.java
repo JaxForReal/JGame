@@ -7,7 +7,7 @@ import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
 
 public abstract class Entity {
-    protected float movePerSecond = 2f;
+    protected float movePerSecond = 4f;
 
     public boolean isMoving;
     /**

@@ -73,21 +73,10 @@ public class Map {
 
         //render mapObjects
         for (Entity entity : entities) {
-
-            if (entity.isMoving) {
-                //copy entities moveFrom position to temp var
-                entityPosiionUtil.set(entity.getPreviousPosition());
-                entityPosiionUtil.lerp(entity.getTilePosition(), entity.lerpAlpha);
+                entityPosiionUtil = getLerpedPosition(entity);
                 entity.render(spriteBatch,
                         mapX + (entityPosiionUtil.x * tileSize),
                         mapY + (entityPosiionUtil.y * tileSize));
-
-            } else {
-                entity.render(spriteBatch,
-                        mapX + (entity.getTilePosition().x * tileSize),
-                        mapY + (entity.getTilePosition().y * tileSize));
-            }
-
         }
     }
 
@@ -98,7 +87,23 @@ public class Map {
      * assumes map is rendered at (0, 0). Take this into account!
      */
     public Vector2 unproject(Vector2 tileCoords) {
-        return new Vector2(tileCoords.scl(tileSize));
+        return tileCoords.scl((float) tileSize);
+    }
+
+    //TODO maybe move somewhere else?
+
+    /**
+     * returns the animated position of entity
+     * takes into account tilePosition, previousPosition, and lerpAlpha
+     */
+    public Vector2 getLerpedPosition(Entity entity) {
+        if(entity.isMoving) {
+            entityPosiionUtil.set(entity.getPreviousPosition());
+            entityPosiionUtil.lerp(entity.getTilePosition(), entity.lerpAlpha);
+        } else {
+            entityPosiionUtil.set(entity.getTilePosition());
+        }
+        return entityPosiionUtil;
     }
 
     public int getWidthInTiles() {

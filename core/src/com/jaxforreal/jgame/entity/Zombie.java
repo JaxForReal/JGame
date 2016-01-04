@@ -13,6 +13,7 @@ public class Zombie extends Entity {
     public Zombie(GameManager gameManager) {
         super(gameManager);
         texture = gameManager.assets.get("core/assets/tiles/brick_red.png", Texture.class);
+        movePerSecond = 100f;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class Zombie extends Entity {
         super.update(delta);
 
         elapsedTime += delta;
-        //(1 / movePerSecond) is number of seconds a move takes
+        //(1 / movePerSecond) is number of seconds 1 move takes
         if (elapsedTime > (1 / movePerSecond)) {
             tryMove(Direction.random());
             elapsedTime = 0;
