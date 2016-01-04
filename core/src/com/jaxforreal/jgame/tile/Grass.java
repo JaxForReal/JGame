@@ -5,7 +5,7 @@ import com.jaxforreal.jgame.GameManager;
 public class Grass extends SimpleTile {
     public Grass(GameManager gameManager, int id) {
         super(gameManager, id);
-        texture = gameManager.assets.get("core/assets/tiles/grass_top.png");
+        texture = gameManager.assets.get("core/assets/tiles/water.png");
     }
 
     @Override

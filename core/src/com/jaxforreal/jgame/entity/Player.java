@@ -58,7 +58,7 @@ public class Player extends Entity {
     public void render(SpriteBatch spriteBatch, float x, float y) {
         spriteBatch.draw(
                 //placeholder asset
-                gameManager.assets.get("core/assets/tiles/dirt_snow.png", Texture.class),
+                gameManager.assets.get("core/assets/tiles/wood_red.png", Texture.class),
                 x,
                 y,
                 parentMap.tileSize,

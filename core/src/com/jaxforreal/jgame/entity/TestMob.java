@@ -5,15 +5,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 
-//TODO this is just a placeholder, need to make Mob superclass
-public class Zombie extends Entity {
+//TODO this is just elapsedTime = new Random().nextFloat();a placeholder, need to make Mob superclass
+public class TestMob extends Entity {
     Texture texture;
     float elapsedTime;
 
-    public Zombie(GameManager gameManager) {
+    public TestMob(GameManager gameManager) {
         super(gameManager);
-        texture = gameManager.assets.get("core/assets/tiles/brick_red.png", Texture.class);
-        movePerSecond = 100f;
+        elapsedTime = gameManager.random.nextFloat() * (1f / movePerSecond);
+        texture = gameManager.assets.get("core/assets/tiles/lava.png", Texture.class);
+        movePerSecond = 1f;
     }
 
     @Override
@@ -35,6 +36,6 @@ public class Zombie extends Entity {
 
     @Override
     public Entity getClone() {
-        return new Zombie(gameManager);
+        return new TestMob(gameManager);
     }
 }

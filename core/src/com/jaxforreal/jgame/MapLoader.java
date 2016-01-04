@@ -3,7 +3,7 @@ package com.jaxforreal.jgame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
 import com.jaxforreal.jgame.entity.Entity;
-import com.jaxforreal.jgame.entity.Zombie;
+import com.jaxforreal.jgame.entity.TestMob;
 import com.jaxforreal.jgame.tile.Grass;
 import com.jaxforreal.jgame.tile.Tile;
 import com.jaxforreal.jgame.tile.Wood;
@@ -41,7 +41,7 @@ public class MapLoader {
         //all the mappings for loading objects into map from xml
         objectIds = new HashMap<String, Entity>();
         //pass null for tilemap because these objects only serve as a template for cloning
-        objectIds.put("zombie", new Zombie(gameManager));
+        objectIds.put("test-mob", new TestMob(gameManager));
     }
 
     /**
