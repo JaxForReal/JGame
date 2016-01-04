@@ -58,8 +58,9 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         map_test_.update(delta);
         temp.set(player_test_.getTilePosition());
-        camera.position.set(map_test_.tileToWorldCoords(temp), 0);
+        //camera.position.set(map_test_.unproject(temp), 0);
         camera.update();
+
 
         Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
