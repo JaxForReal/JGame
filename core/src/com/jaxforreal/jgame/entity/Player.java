@@ -23,8 +23,9 @@ public class Player extends Entity {
     @SuppressWarnings("UnnecessaryReturnStatement")
     @Override
     public void update(float delta) {
+        super.update(delta);
         timeSinceLastMove += delta;
-        if (timeSinceLastMove > 0.1f) {
+        if (timeSinceLastMove > (1 / movePerSecond)) {
             if (pressedKeys.contains(Input.Keys.W, false)) {
                 tryMove(Direction.UP);
                 return;

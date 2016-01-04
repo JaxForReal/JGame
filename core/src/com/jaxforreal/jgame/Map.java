@@ -8,16 +8,28 @@ import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.tile.Tile;
 
 public class Map {
-    //the width and height of each tile
+    /**
+     * the width and height of each tile
+     */
     public final int tileSize = 100;
-    //NOTE: tiles are stored in a Tile[x][y] format.
+
+    /**
+     * NOTE: tiles are stored in a Tile[x][y] format.
+     */
     private Tile[][] tiles;
-    private Array<Entity> tileMapObjects;
+    private Array<Entity> entities;
+
+    /**
+     * temporary object to cut down on GC
+     * used to calculate animations/locations
+     */
+    private Vector2 entityPosiionUtil;
 
     public Map(int width, int height) {
         //initialize tile array
         tiles = new Tile[width][height];
-        tileMapObjects = new Array<Entity>(false, 10, Entity.class);
+        entities = new Array<Entity>(false, 10, Entity.class);
+        entityPosiionUtil = new Vector2();
     }
 
     /**
@@ -32,12 +44,12 @@ public class Map {
      * automagically sets MapObject's parentMap
      */
     void addMapObject(Entity entity) {
-        tileMapObjects.add(entity);
+        entities.add(entity);
         entity.setParentMap(this);
     }
 
     public void update(float delta) {
-        for (Entity object : tileMapObjects) {
+        for (Entity object : entities) {
             object.update(delta);
         }
 
@@ -60,19 +72,32 @@ public class Map {
         }
 
         //render mapObjects
-        for (Entity object : tileMapObjects) {
-            object.render(spriteBatch,
-                    mapX + (object.getTilePosition().x * tileSize),
-                    mapY + (object.getTilePosition().y * tileSize));
+        for (Entity entity : entities) {
+
+            if (entity.isMoving) {
+                //copy entities moveFrom position to temp var
+                entityPosiionUtil.set(entity.getPreviousPosition());
+                entityPosiionUtil.lerp(entity.getTilePosition(), entity.lerpAlpha);
+                entity.render(spriteBatch,
+                        mapX + (entityPosiionUtil.x * tileSize),
+                        mapY + (entityPosiionUtil.y * tileSize));
+
+            } else {
+                entity.render(spriteBatch,
+                        mapX + (entity.getTilePosition().x * tileSize),
+                        mapY + (entity.getTilePosition().y * tileSize));
+            }
+
         }
     }
 
     //Note: this does not take into account x and y that map is rendered at...
 
     /**
+     * converts tile coordinates to World coordinates
      * assumes map is rendered at (0, 0). Take this into account!
      */
-    public Vector2 tileToWorldCoords(Vector2 tileCoords) {
+    public Vector2 unproject(Vector2 tileCoords) {
         return new Vector2(tileCoords.scl(tileSize));
     }
 

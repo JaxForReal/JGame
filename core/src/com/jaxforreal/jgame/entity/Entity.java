@@ -7,19 +7,47 @@ import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
 
 public abstract class Entity {
+    protected float movePerSecond = 2f;
+
+    public boolean isMoving;
+    /**
+     * [if moving] the amount moved from prev to new
+     * scale of 0 -> 1
+     */
+    public float lerpAlpha;
+
     protected Map parentMap;
     protected GameManager gameManager;
+
+    /**
+     * the current position that this entity is at OR currently moving to
+     */
     private Vector2 tilePosition;
+    /**
+     * previous position that this entity was at before move
+     * (or currently moving from this position)
+     */
+    private Vector2 previousPosition;
 
     public Entity(GameManager gameManager) {
         this.gameManager = gameManager;
         this.tilePosition = new Vector2();
+        this.previousPosition = new Vector2();
     }
 
     /**
      * update tileX and tileY here
      */
-    public abstract void update(float delta);
+    public void update(float delta) {
+        if (isMoving) {
+            lerpAlpha += delta * movePerSecond;
+        }
+        //if close to 1
+        if (lerpAlpha >= 0.95f) {
+            isMoving = false;
+            lerpAlpha = 0;
+        }
+    }
 
     /**
      * rendering is handled by Map.render()
@@ -32,30 +60,38 @@ public abstract class Entity {
      * @return whether or not the object actually moved (false if collided with solid tile)
      */
     protected boolean tryMove(Direction direction) {
-        //TODO possible optimization: no more object creation??
-        Vector2 newPos = new Vector2(
-                tilePosition.x + direction.x(),
-                tilePosition.y + direction.y());
+
+        Vector2 possiblePos = new Vector2(
+                getTilePosition().x + direction.x(),
+                getTilePosition().y + direction.y());
 
         //check out of map bounds
-        if ((newPos.x < 0) || (newPos.y < 0) ||
-                (newPos.x >= parentMap.getWidthInTiles()) || (newPos.y >= parentMap.getHeightInTiles())) {
+        if ((possiblePos.x < 0) || (possiblePos.y < 0) ||
+                (possiblePos.x >= parentMap.getWidthInTiles()) || (possiblePos.y >= parentMap.getHeightInTiles())) {
             return false;
         }
+
         //if not solid, move to
-        if (!parentMap.getTileAt((int)newPos.x, (int)newPos.y).isSolid()) {
-            tilePosition.set(newPos);
+        if (!parentMap.getTileAt((int) possiblePos.x, (int) possiblePos.y).isSolid()) {
+            previousPosition.set(tilePosition);
+            tilePosition.set(possiblePos);
+            lerpAlpha = 0;
+            isMoving = true;
             return true;
         }
         return false;
     }
 
-    public Vector2 getTilePosition(){
+    public Vector2 getTilePosition() {
         return tilePosition;
     }
 
+    public Vector2 getPreviousPosition() {
+        return previousPosition;
+    }
+
     /**
-     *this method is called when you add this entity to parent map
+     * this method is called when you add this entity to parent map
      */
     public void setParentMap(Map parentMap) {
         this.parentMap = parentMap;

@@ -17,9 +17,11 @@ public class Zombie extends Entity {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
 
         elapsedTime += delta;
-        if (elapsedTime > 0.3f) {
+        //(1 / movePerSecond) is number of seconds a move takes
+        if (elapsedTime > (1 / movePerSecond)) {
             tryMove(Direction.random());
             elapsedTime = 0;
         }
