@@ -8,17 +8,27 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 
 public class LoadingScreen extends ScreenAdapter {
-    SpriteBatch spriteBatch;
-    JGameMain game;
-    AssetManager assetManager;
+    static final Array<String> TITLE_STRINGS = new Array<String>();
+    {
+        TITLE_STRINGS.add("<Title text here>");
+        TITLE_STRINGS.add("here is another title string");
+        TITLE_STRINGS.add("boring text");
+        TITLE_STRINGS.add("hello there");
+    }
+
+    private SpriteBatch spriteBatch;
+    private JGameMain game;
+    private AssetManager assetManager;
 
     //TODO (maybe) specify which assets to load in a different class??
     public LoadingScreen(JGameMain game) {
         this.game = game;
-
         assetManager = new AssetManager();
+
+        Gdx.graphics.setTitle("My Game: " + TITLE_STRINGS.random());
 
         //load font
         assetManager.load("core/assets/font.fnt", BitmapFont.class);
