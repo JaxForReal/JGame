@@ -7,5 +7,4 @@ import com.badlogic.gdx.assets.AssetManager;
  */
 public class GameManager {
     public AssetManager assets;
-    //TODO sound, etc. here
 }

@@ -5,8 +5,6 @@ import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
 
-//TODO what to do about sub-tile objects, like arrows???
-//TODO maybe handle own position flag?
 public abstract class Entity {
     protected Map parentMap;
     protected GameManager gameManager;

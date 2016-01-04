@@ -77,7 +77,6 @@ public class MapLoader {
             for (int xIter = 0; xIter < width; xIter++) {
                 String tileString = tileStrings[xIter];
                 //get a new tile by cloning it from the tile database
-                //TODO consider moving this database to seperate file if it become unwieldy
                 Tile newTile = tileIds.get(tileString).getClone();
 
                 //"newMap.getHeightInTiles() - yIter" because of y-up rendering, but y-down text
