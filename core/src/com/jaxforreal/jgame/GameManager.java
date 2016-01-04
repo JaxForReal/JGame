@@ -10,4 +10,5 @@ import java.util.Random;
 public class GameManager {
     public AssetManager assets;
     public Random random = new Random();
+    public GameScreen gameScreen;
 }
