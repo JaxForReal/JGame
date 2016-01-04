@@ -4,16 +4,15 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.GameManager;
 
-public abstract class AnimatedTile implements Tile {
+public abstract class AnimatedTile extends Tile {
     /**
      * child classes need to instantiate animation
      */
     protected Animation animation;
-    protected GameManager gameManager;
     private float animationStateTime;
 
-    public AnimatedTile(GameManager gameManager) {
-        this.gameManager = gameManager;
+    public AnimatedTile(GameManager gameManager, int id) {
+        super(gameManager, id);
     }
 
     @Override

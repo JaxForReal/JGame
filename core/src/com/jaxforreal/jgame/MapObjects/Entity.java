@@ -64,7 +64,7 @@ public abstract class Entity {
     }
 
     /**
-     * remember to do this after cloning a TimeMapObject
+     *this method is called when you add this entity to parent map
      */
     public void setParentMap(Map parentMap) {
         this.parentMap = parentMap;

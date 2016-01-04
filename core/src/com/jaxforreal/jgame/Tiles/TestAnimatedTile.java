@@ -8,8 +8,8 @@ import com.jaxforreal.jgame.GameManager;
 
 public class TestAnimatedTile extends AnimatedTile {
 
-    public TestAnimatedTile(GameManager gameManager) {
-        super(gameManager);
+    public TestAnimatedTile(GameManager gameManager, int id) {
+        super(gameManager, id);
         Texture animSource = gameManager.assets.get("core/assets/tiles/stone_gold.png");
         TextureRegion[][] grid = TextureRegion.split(animSource, 32, 32);
         Array<TextureRegion> regionList = new Array<TextureRegion>();
@@ -23,7 +23,7 @@ public class TestAnimatedTile extends AnimatedTile {
 
     @Override
     public Tile getClone() {
-        return new TestAnimatedTile(gameManager);
+        return new TestAnimatedTile(gameManager, id);
     }
 
     @Override

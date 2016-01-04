@@ -5,12 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.GameManager;
 
-public abstract class SimpleTile implements Tile {
-    protected GameManager gameManager;
+public abstract class SimpleTile extends Tile {
     protected Texture texture;
 
-    public SimpleTile(GameManager gameManager) {
-        this.gameManager = gameManager;
+    public SimpleTile(GameManager gameManager, int id) {
+        super(gameManager, id);
     }
 
     @Override

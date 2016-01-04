@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
 import com.jaxforreal.jgame.MapObjects.Entity;
 import com.jaxforreal.jgame.MapObjects.Zombie;
-import com.jaxforreal.jgame.Tiles.Grass;
 import com.jaxforreal.jgame.Tiles.Tile;
-import com.jaxforreal.jgame.Tiles.Wood;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,8 +28,12 @@ public class MapLoader {
 
         //these are all the mappings for string -> tileType when reading map txt files
         tileIds = new HashMap<String, Tile>();
-        tileIds.put(".", new Grass(gameManager));
-        tileIds.put("w", new Wood(gameManager));
+        tileIds.put(".", Tile.GRASS.getClone());
+        tileIds.put("w", Tile.WOOD.getClone());
+
+        for(Tile tile : tileIds.values()) {
+            tile.gameManager = gameManager;
+        }
 
         //all the mappings for loading objects into map from xml
         objectIds = new HashMap<String, Entity>();
