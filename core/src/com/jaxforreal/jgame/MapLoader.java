@@ -2,7 +2,7 @@ package com.jaxforreal.jgame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
-import com.jaxforreal.jgame.MapObjects.TileMapObject;
+import com.jaxforreal.jgame.MapObjects.Entity;
 import com.jaxforreal.jgame.MapObjects.Zombie;
 import com.jaxforreal.jgame.Tiles.Grass;
 import com.jaxforreal.jgame.Tiles.Tile;
@@ -12,15 +12,15 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * Static class that loads TileMap's from plaintext files
+ * Static class that loads Map's from plaintext files
  * Also holds information about converting from strings (in plaintext file) to tiles
  */
 public class MapLoader {
-    private HashMap<String, Tile> tileIds;
-    private HashMap<String, TileMapObject> objectIds;
-
     GameManager gameManager;
     XmlReader xmlReader = new XmlReader();
+    private HashMap<String, Tile> tileIds;
+    private HashMap<String, Entity> objectIds;
+
     /**
      * @param gameManager the game's GameManager.
      *                    all tiles and tilemaps that are loaded with this MapLoader will be passed this value;
@@ -34,42 +34,42 @@ public class MapLoader {
         tileIds.put("w", new Wood(gameManager));
 
         //all the mappings for loading objects into map from xml
-        objectIds = new HashMap<String, TileMapObject>();
+        objectIds = new HashMap<String, Entity>();
         //pass null for tilemap because these objects only serve as a template for cloning
         objectIds.put("zombie", new Zombie(gameManager));
     }
 
     /**
      * map must be rectangular
-     *
+     * <p/>
      * tile data format:
      * linebreaks separate rows; spaces separate columns
      * each cell in the textfile tilemap must correspond
      * to a key in the tilIds map so it can be converted to a Tile object
-     *
+     * <p/>
      * object data format:
      * <objects>
-     *     <obj type="type to look up in objectIds map" x="0" y="0" />
-     *     <obj type="another" x="2" y="5" />
+     * <obj type="type to look up in objectIds map" x="0" y="0" />
+     * <obj type="another" x="2" y="5" />
      * </objects>
      */
-    public TileMap loadFromFile(String tileDataPath, String objectDataPath) {
-        TileMap newMap = loadTiles(tileDataPath);
+    public Map loadFromFile(String tileDataPath, String objectDataPath) {
+        Map newMap = loadTiles(tileDataPath);
         loadMapObjects(newMap, objectDataPath);
         return newMap;
     }
 
     /**
      * load all static tiles from tileDataPath to a new map, returns that map
-     * uses TileMap.setTileAt(...)
+     * uses Map.setTileAt(...)
      */
-    private TileMap loadTiles(String tileDataPath) {
+    private Map loadTiles(String tileDataPath) {
         String[] mapLines = Gdx.files.internal(tileDataPath).readString().split("\n");
 
         int width = mapLines[0].split(" ").length;
         int height = mapLines.length;
 
-        TileMap newMap = new TileMap(width, height);
+        Map newMap = new Map(width, height);
 
         for (int yIter = 0; yIter < height; yIter++) {
             String[] tileStrings = mapLines[yIter].split(" ");
@@ -91,22 +91,22 @@ public class MapLoader {
 
     /**
      * load all tileMapObjects on map
-     * uses TileMap.addMapObject(...)
+     * uses Map.addMapObject(...)
      */
-    private void loadMapObjects(TileMap map, String objectDataPath) {
+    private void loadMapObjects(Map map, String objectDataPath) {
         try {
             XmlReader.Element objectXmlData = xmlReader.parse(Gdx.files.internal(objectDataPath));
 
-            for(XmlReader.Element childObjectXml : objectXmlData.getChildrenByName("obj")) {
-                //get new object by cloning it from the string->TileMapObject map
-                TileMapObject newMapObject = objectIds.get(childObjectXml.get("type")).clone();
+            for (XmlReader.Element childObjectXml : objectXmlData.getChildrenByName("obj")) {
+                //get new object by cloning it from the String->Entity map
+                Entity newMapObject = objectIds.get(childObjectXml.get("type")).clone();
                 newMapObject.setTileX(childObjectXml.getInt("x"));
                 newMapObject.setTileY(childObjectXml.getInt("y"));
                 map.addMapObject(newMapObject);
             }
 
         } catch (IOException e) {
-            Gdx.app.error("load", "Error while reading xml of TileMap", e);
+            Gdx.app.error("load", "Error while reading xml of Map", e);
             e.printStackTrace();
         }
     }

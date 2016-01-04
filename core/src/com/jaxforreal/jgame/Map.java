@@ -3,37 +3,40 @@ package com.jaxforreal.jgame;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.jaxforreal.jgame.MapObjects.TileMapObject;
+import com.jaxforreal.jgame.MapObjects.Entity;
 import com.jaxforreal.jgame.Tiles.Tile;
 
-public class TileMap {
+public class Map {
     //the width and height of each tile
     public final int tileSize = 100;
     //NOTE: tiles are stored in a Tile[x][y] format.
     private Tile[][] tiles;
-    private Array<TileMapObject> tileMapObjects;
+    private Array<Entity> tileMapObjects;
 
-    public TileMap(int width, int height) {
+    public Map(int width, int height) {
         //initialize tile array
         tiles = new Tile[width][height];
-        tileMapObjects = new Array<TileMapObject>(false, 10, TileMapObject.class);
+        tileMapObjects = new Array<Entity>(false, 10, Entity.class);
     }
 
-    /** Used in MapLoader to init tiles */
+    /**
+     * Used in MapLoader to init tiles
+     */
     void setTileAt(int x, int y, Tile tile) {
         tiles[x][y] = tile;
     }
 
-    /** Used in MapLoader to init TileMapObjects
-     *  automagically sets MapObject's parentMap
+    /**
+     * Used in MapLoader to init TileMapObjects
+     * automagically sets MapObject's parentMap
      */
-    void addMapObject(TileMapObject tileMapObject) {
-        tileMapObjects.add(tileMapObject);
-        tileMapObject.setParentMap(this);
+    void addMapObject(Entity entity) {
+        tileMapObjects.add(entity);
+        entity.setParentMap(this);
     }
 
     public void update(float delta) {
-        for(TileMapObject object : tileMapObjects) {
+        for (Entity object : tileMapObjects) {
             object.update(delta);
         }
     }
@@ -54,7 +57,7 @@ public class TileMap {
         }
 
         //render mapObjects
-        for(TileMapObject object : tileMapObjects) {
+        for (Entity object : tileMapObjects) {
             object.render(spriteBatch, mapX + (object.getTileX() * tileSize), mapY + (object.getTileY() * tileSize));
         }
     }

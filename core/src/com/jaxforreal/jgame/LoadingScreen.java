@@ -19,7 +19,7 @@ public class LoadingScreen extends ScreenAdapter {
         this.game = game;
 
         assetManager = new AssetManager();
-        
+
         //load font
         assetManager.load("core/assets/font.fnt", BitmapFont.class);
         //need to finish so we can display loaded percentage in render()

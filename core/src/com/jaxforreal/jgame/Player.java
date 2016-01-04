@@ -4,12 +4,12 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.jaxforreal.jgame.MapObjects.TileMapObject;
+import com.jaxforreal.jgame.MapObjects.Entity;
 
-public class Player extends TileMapObject {
+public class Player extends Entity {
     private static final int[] WASD = new int[]{51, 29, 47, 32};
-    private Array<Integer> pressedKeys = new Array<Integer>();
     public PlayerInputProcessor inputProcessor = new PlayerInputProcessor();
+    private Array<Integer> pressedKeys = new Array<Integer>();
 
     public Player(GameManager gameManager) {
         super(gameManager);
@@ -44,7 +44,7 @@ public class Player extends TileMapObject {
     }
 
     @Override
-    public TileMapObject clone() {
+    public Entity clone() {
         return new Player(gameManager);
     }
 
@@ -74,7 +74,7 @@ public class Player extends TileMapObject {
         @Override
         public boolean keyUp(int keycode) {
             if (isKeyRelevant(keycode)) {
-                pressedKeys.removeValue(new Integer(keycode), false);
+                pressedKeys.removeValue(keycode, false);
                 return true;
             }
             return false;

@@ -18,7 +18,7 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private Viewport viewport;
 
-    private TileMap tileMap_test_;
+    private Map map_test_;
     private Player player_test_;
 
     //assetManager is passed in from LoadingScreen
@@ -38,8 +38,8 @@ public class GameScreen extends ScreenAdapter {
         player_test_.setTileY(3);
 
         MapLoader mapLoader = new MapLoader(gameManager);
-        tileMap_test_ = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
-        tileMap_test_.addMapObject(player_test_);
+        map_test_ = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
+        map_test_.addMapObject(player_test_);
 
         //y up projection
         camera.setToOrtho(false, 3200, 1800);
@@ -49,14 +49,14 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        tileMap_test_.update(delta);
+        map_test_.update(delta);
 
         Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        tileMap_test_.render(spriteBatch, 0, 0);
+        map_test_.render(spriteBatch, 0, 0);
         spriteBatch.end();
     }
 

@@ -1,4 +1,4 @@
-<!--Please note: coordinates are Y-up from bottom of parent TileMap-->
+<!--Please note: coordinates are Y-up from bottom of parent Map-->
 <objects>
     <obj type="zombie" x="1" y="2" />
 </objects>

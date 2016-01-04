@@ -10,11 +10,11 @@ import com.badlogic.gdx.Gdx;
  */
 public class JGameMain extends Game {
 
-	@Override
-	public void create() {
-		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+    @Override
+    public void create() {
+        Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
-		//LoadingScreen inits GameScreen
-		setScreen(new LoadingScreen(this));
-	}
+        //LoadingScreen inits GameScreen
+        setScreen(new LoadingScreen(this));
+    }
 }

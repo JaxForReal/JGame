@@ -8,14 +8,17 @@ public enum Direction {
     LEFT(-1, 0),
     RIGHT(1, 0);
 
-    private int x, y;
-
     private static final Direction[] VALUES = values();
     private static final Random RANDOM = new Random();
+    private int x, y;
 
     Direction(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static Direction random() {
+        return VALUES[RANDOM.nextInt(VALUES.length)];
     }
 
     public int x() {
@@ -25,8 +28,4 @@ public enum Direction {
     public int y() {
         return y;
     }
-
-     public static Direction random() {
-        return VALUES[RANDOM.nextInt(VALUES.length)];
-     }
 }

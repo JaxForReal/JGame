@@ -6,7 +6,7 @@ import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 
 //TODO this is just a placeholder, need to make Mob superclass
-public class Zombie extends TileMapObject {
+public class Zombie extends Entity {
     Texture texture;
     float elapsedTime;
 
@@ -19,7 +19,7 @@ public class Zombie extends TileMapObject {
     public void update(float delta) {
 
         elapsedTime += delta;
-        if(elapsedTime > 0.3f) {
+        if (elapsedTime > 0.3f) {
             tryMove(Direction.random());
             elapsedTime = 0;
         }
@@ -31,7 +31,7 @@ public class Zombie extends TileMapObject {
     }
 
     @Override
-    public TileMapObject clone() {
+    public Entity clone() {
         return new Zombie(gameManager);
     }
 }
