@@ -1,4 +1,4 @@
-package com.jaxforreal.jgame.Tiles;
+package com.jaxforreal.jgame.tile;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -10,15 +10,15 @@ public class TestAnimatedTile extends AnimatedTile {
 
     public TestAnimatedTile(GameManager gameManager, int id) {
         super(gameManager, id);
-        Texture animSource = gameManager.assets.get("core/assets/tiles/stone_gold.png");
-        TextureRegion[][] grid = TextureRegion.split(animSource, 32, 32);
+        Texture animSource = gameManager.assets.get("core/assets/test_animation.png");
+        TextureRegion[][] grid = TextureRegion.split(animSource, 8, 8);
         Array<TextureRegion> regionList = new Array<TextureRegion>();
         for(TextureRegion[] column : grid) {
             for(TextureRegion textureRegion : column) {
                 regionList.add(textureRegion);
             }
         }
-        animation = new Animation(0.25f, regionList, Animation.PlayMode.LOOP);
+        animation = new Animation(0.15f, regionList, Animation.PlayMode.LOOP);
     }
 
     @Override

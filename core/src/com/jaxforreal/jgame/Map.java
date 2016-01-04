@@ -4,8 +4,8 @@ package com.jaxforreal.jgame;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.jaxforreal.jgame.MapObjects.Entity;
-import com.jaxforreal.jgame.Tiles.Tile;
+import com.jaxforreal.jgame.entity.Entity;
+import com.jaxforreal.jgame.tile.Tile;
 
 public class Map {
     //the width and height of each tile

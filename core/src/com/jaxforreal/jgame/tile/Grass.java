@@ -1,4 +1,4 @@
-package com.jaxforreal.jgame.Tiles;
+package com.jaxforreal.jgame.tile;
 
 import com.jaxforreal.jgame.GameManager;
 

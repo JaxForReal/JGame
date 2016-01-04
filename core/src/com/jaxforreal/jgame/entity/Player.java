@@ -1,11 +1,12 @@
-package com.jaxforreal.jgame;
+package com.jaxforreal.jgame.entity;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.jaxforreal.jgame.MapObjects.Entity;
+import com.jaxforreal.jgame.Direction;
+import com.jaxforreal.jgame.GameManager;
 
 public class Player extends Entity {
     //WASD key codes for com.badlogic.gdx.Input.Keys

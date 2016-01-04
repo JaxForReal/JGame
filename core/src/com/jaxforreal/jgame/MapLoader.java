@@ -2,9 +2,12 @@ package com.jaxforreal.jgame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
-import com.jaxforreal.jgame.MapObjects.Entity;
-import com.jaxforreal.jgame.MapObjects.Zombie;
-import com.jaxforreal.jgame.Tiles.Tile;
+import com.jaxforreal.jgame.entity.Entity;
+import com.jaxforreal.jgame.entity.Zombie;
+import com.jaxforreal.jgame.tile.Grass;
+import com.jaxforreal.jgame.tile.Tile;
+import com.jaxforreal.jgame.tile.Wood;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,7 +19,7 @@ import java.util.HashMap;
 public class MapLoader {
     GameManager gameManager;
     XmlReader xmlReader = new XmlReader();
-    private HashMap<String, Tile> tileIds;
+    private HashMap<String, Tile> tileSaveNames;
     private HashMap<String, Entity> objectIds;
 
     /**
@@ -27,11 +30,11 @@ public class MapLoader {
         this.gameManager = gameManager;
 
         //these are all the mappings for string -> tileType when reading map txt files
-        tileIds = new HashMap<String, Tile>();
-        tileIds.put(".", Tile.GRASS.getClone());
-        tileIds.put("w", Tile.WOOD.getClone());
+        tileSaveNames = new HashMap<String, Tile>();
+        tileSaveNames.put(".", new Grass(gameManager, 0));
+        tileSaveNames.put("w", new Wood(gameManager, 1));
 
-        for(Tile tile : tileIds.values()) {
+        for (Tile tile : tileSaveNames.values()) {
             tile.gameManager = gameManager;
         }
 
@@ -61,6 +64,10 @@ public class MapLoader {
         return newMap;
     }
 
+    public void saveToFile(Map map, String tileDataPath, String objectDataPath) {
+
+    }
+
     /**
      * load all static tiles from tileDataPath to a new map, returns that map
      * uses Map.setTileAt(...)
@@ -79,7 +86,7 @@ public class MapLoader {
             for (int xIter = 0; xIter < width; xIter++) {
                 String tileString = tileStrings[xIter];
                 //get a new tile by cloning it from the tile database
-                Tile newTile = tileIds.get(tileString).getClone();
+                Tile newTile = tileSaveNames.get(tileString).getClone();
 
                 //"newMap.getHeightInTiles() - yIter" because of y-up rendering, but y-down text
                 //"-1" because off by one errors with getHeightInTiles() vs index
@@ -112,4 +119,29 @@ public class MapLoader {
         }
     }
 
+    private void saveTiles(Map map, String tileDataPath) {
+        String mapString = "";
+        for (int iterX = 0; iterX < map.getWidthInTiles(); iterX++) {
+            for (int iterY = 0; iterY < map.getHeightInTiles(); iterY++) {
+
+            }
+        }
+    }
+
+    @Nullable
+    public String getSaveNameById(int id) {
+        for(Tile valueTile : tileSaveNames.values()) {
+            if(valueTile.id == id){
+
+                //get key from valueTile
+                for(String key : tileSaveNames.keySet()) {
+                    if(tileSaveNames.get(key).equals(valueTile)) {
+                        return key;
+                    }
+                }
+
+            }
+        }
+        return null;
+    }
 }
