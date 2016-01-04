@@ -1,40 +1,61 @@
 package com.jaxforreal.jgame;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.MapObjects.Entity;
 
 public class Player extends Entity {
+    //WASD key codes for com.badlogic.gdx.Input.Keys
     private static final int[] WASD = new int[]{51, 29, 47, 32};
+
     public PlayerInputProcessor inputProcessor = new PlayerInputProcessor();
     private Array<Integer> pressedKeys = new Array<Integer>();
+    private float timeSinceLastMove;
 
     public Player(GameManager gameManager) {
         super(gameManager);
     }
 
+    @SuppressWarnings("UnnecessaryReturnStatement")
     @Override
     public void update(float delta) {
-        if (pressedKeys.contains(Input.Keys.W, false)) {
-            tryMove(Direction.UP);
-        }
-        if (pressedKeys.contains(Input.Keys.A, false)) {
-            tryMove(Direction.LEFT);
-        }
-        if (pressedKeys.contains(Input.Keys.S, false)) {
-            tryMove(Direction.DOWN);
-        }
-        if (pressedKeys.contains(Input.Keys.D, false)) {
-            tryMove(Direction.RIGHT);
+        timeSinceLastMove += delta;
+        if (timeSinceLastMove > 0.1f) {
+            if (pressedKeys.contains(Input.Keys.W, false)) {
+                tryMove(Direction.UP);
+                return;
+            }
+            if (pressedKeys.contains(Input.Keys.A, false)) {
+                tryMove(Direction.LEFT);
+                return;
+            }
+            if (pressedKeys.contains(Input.Keys.S, false)) {
+                tryMove(Direction.DOWN);
+                return;
+            }
+            if (pressedKeys.contains(Input.Keys.D, false)) {
+                tryMove(Direction.RIGHT);
+                return;
+            }
         }
     }
 
     @Override
+    protected boolean tryMove(Direction direction) {
+        boolean success = super.tryMove(direction);
+        if (success) {
+            timeSinceLastMove = 0;
+        }
+        return success;
+    }
+
+    @Override
     public void render(SpriteBatch spriteBatch, float x, float y) {
-        new Integer(0);
         spriteBatch.draw(
+                //placeholder asset
                 gameManager.assets.get("core/assets/tiles/dirt_snow.png", Texture.class),
                 x,
                 y,
@@ -58,9 +79,7 @@ public class Player extends Entity {
         return false;
     }
 
-    //TODO performance hit from unboxing/boxing Integer->int
-    //No premature optimization!!!
-    public class PlayerInputProcessor implements com.badlogic.gdx.InputProcessor {
+    public class PlayerInputProcessor implements InputProcessor {
 
         @Override
         public boolean keyDown(int keycode) {

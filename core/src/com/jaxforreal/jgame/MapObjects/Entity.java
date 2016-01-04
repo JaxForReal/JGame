@@ -28,18 +28,25 @@ public abstract class Entity {
      */
     public abstract void render(SpriteBatch spriteBatch, float x, float y);
 
-    protected void tryMove(Direction direction) {
+    /**
+     * @return whether or not the object actually moved (false if collided with solid tile)
+     */
+    protected boolean tryMove(Direction direction) {
         //TODO possible optimization: no more object creation??
         int newTileX = tileX + direction.x();
         int newTileY = tileY + direction.y();
+
+        //out of map bounds
         if ((newTileX < 0) || (newTileY < 0) ||
                 (newTileX >= parentMap.getWidthInTiles()) || (newTileY >= parentMap.getHeightInTiles())) {
-            return;
+            return false;
         }
         if (!parentMap.getTileAt(newTileX, newTileY).isSolid()) {
             tileX = newTileX;
             tileY = newTileY;
+            return true;
         }
+        return false;
     }
 
     public int getTileX() {
