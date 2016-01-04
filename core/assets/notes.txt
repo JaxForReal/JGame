@@ -1,0 +1,7 @@
+-how to do tilemaps?
+
+-how to do multiple types of a single tile
+ie. same properties, different texture
+animated tile?
+
+-> Ideal situation
