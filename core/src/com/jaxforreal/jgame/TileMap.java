@@ -24,9 +24,12 @@ public class TileMap {
         tiles[x][y] = tile;
     }
 
-    /** Used in MapLoader to init TileMapObjects */
+    /** Used in MapLoader to init TileMapObjects
+     *  automagically sets MapObject's parentMap
+     */
     void addMapObject(TileMapObject tileMapObject) {
         tileMapObjects.add(tileMapObject);
+        tileMapObject.setParentMap(this);
     }
 
     public void update(float delta) {

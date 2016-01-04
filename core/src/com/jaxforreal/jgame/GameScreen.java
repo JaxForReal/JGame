@@ -19,6 +19,7 @@ public class GameScreen extends ScreenAdapter {
     private Viewport viewport;
 
     private TileMap tileMap_test_;
+    private Player player_test_;
 
     //assetManager is passed in from LoadingScreen
     public GameScreen(JGameMain game, AssetManager assetManager) {
@@ -31,9 +32,15 @@ public class GameScreen extends ScreenAdapter {
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(inputMultiplexer);
+        player_test_ = new Player(gameManager);
+        inputMultiplexer.addProcessor(player_test_.inputProcessor);
+        player_test_.setTileX(0);
+        player_test_.setTileY(3);
 
         MapLoader mapLoader = new MapLoader(gameManager);
         tileMap_test_ = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
+        tileMap_test_.addMapObject(player_test_);
+
         //y up projection
         camera.setToOrtho(false, 3200, 1800);
         camera.position.set(-50, -50, 0);

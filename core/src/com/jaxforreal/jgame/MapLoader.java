@@ -100,7 +100,6 @@ public class MapLoader {
             for(XmlReader.Element childObjectXml : objectXmlData.getChildrenByName("obj")) {
                 //get new object by cloning it from the string->TileMapObject map
                 TileMapObject newMapObject = objectIds.get(childObjectXml.get("type")).clone();
-                newMapObject.setParentMap(map);
                 newMapObject.setTileX(childObjectXml.getInt("x"));
                 newMapObject.setTileY(childObjectXml.getInt("y"));
                 map.addMapObject(newMapObject);

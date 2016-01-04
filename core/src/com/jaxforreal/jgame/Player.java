@@ -1,6 +1,7 @@
 package com.jaxforreal.jgame;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.MapObjects.TileMapObject;
@@ -32,7 +33,14 @@ public class Player extends TileMapObject {
 
     @Override
     public void render(SpriteBatch spriteBatch, float x, float y) {
-
+        new Integer(0);
+        spriteBatch.draw(
+                gameManager.assets.get("core/assets/tiles/dirt_snow.png", Texture.class),
+                x,
+                y,
+                parentMap.tileSize,
+                parentMap.tileSize
+        );
     }
 
     @Override
