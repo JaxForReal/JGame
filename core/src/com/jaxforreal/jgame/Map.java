@@ -61,7 +61,9 @@ public class Map {
 
         //render mapObjects
         for (Entity object : tileMapObjects) {
-            object.render(spriteBatch, mapX + (object.getTileX() * tileSize), mapY + (object.getTileY() * tileSize));
+            object.render(spriteBatch,
+                    mapX + (object.getTilePosition().x * tileSize),
+                    mapY + (object.getTilePosition().y * tileSize));
         }
     }
 
@@ -70,8 +72,8 @@ public class Map {
     /**
      * assumes map is rendered at (0, 0). Take this into account!
      */
-    public Vector2 tileCoordinatesToWorldCoordinates(int tileX, int tileY) {
-        return new Vector2(tileX * tileSize, tileY * tileSize);
+    public Vector2 tileToWorldCoords(Vector2 tileCoords) {
+        return new Vector2(tileCoords.scl(tileSize));
     }
 
     public int getWidthInTiles() {
