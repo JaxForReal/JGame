@@ -1,25 +1,26 @@
 package com.jaxforreal.jgame.Tiles;
 
-
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jaxforreal.jgame.GameManager;
 
-public abstract class SimpleTile implements Tile {
+public abstract class AnimatedTile implements Tile {
+    protected Animation animation;
     protected GameManager gameManager;
-    protected Texture texture;
+    private float animationStateTime;
 
-    public SimpleTile(GameManager gameManager) {
+    public AnimatedTile(GameManager gameManager) {
         this.gameManager = gameManager;
     }
 
     @Override
     public void update(float delta) {
+        animationStateTime += delta;
     }
 
     @Override
     public void render(SpriteBatch spriteBatch, float x, float y, float w, float h) {
-        spriteBatch.draw(texture, x, y, w, h);
+        spriteBatch.draw(animation.getKeyFrame(animationStateTime, true), x, y, w, h);
     }
 
     @Override

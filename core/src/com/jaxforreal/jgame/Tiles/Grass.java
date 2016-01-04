@@ -9,7 +9,7 @@ public class Grass extends SimpleTile {
     }
 
     @Override
-    public Tile clone() {
+    public Tile getClone() {
         return new Grass(gameManager);
     }
 

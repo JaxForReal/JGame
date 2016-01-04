@@ -1,11 +1,13 @@
 package com.jaxforreal.jgame.Tiles;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public interface Tile {
-    Texture getTexture();
+    void update(float delta);
 
-    Tile clone();
+    void render(SpriteBatch spriteBatch, float x, float y, float w, float h);
+
+    Tile getClone();
 
     boolean isSolid();
 }

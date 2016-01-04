@@ -39,6 +39,12 @@ public class Map {
         for (Entity object : tileMapObjects) {
             object.update(delta);
         }
+
+        for (Tile[] column : tiles) {
+            for (Tile tile : column) {
+                tile.update(delta);
+            }
+        }
     }
 
     public void render(SpriteBatch spriteBatch, float mapX, float mapY) {
@@ -47,11 +53,7 @@ public class Map {
             for (int iterY = 0; iterY < tiles[0].length; iterY++) {
                 Tile tile = getTileAt(iterX, iterY);
                 if (tile != null) {
-                    spriteBatch.draw(tile.getTexture(),
-                            mapX + (iterX * tileSize),
-                            mapY + (iterY * tileSize),
-                            tileSize,
-                            tileSize);
+                    tile.render(spriteBatch, mapX + (iterX * tileSize), mapY + (iterY * tileSize), tileSize, tileSize);
                 }
             }
         }
