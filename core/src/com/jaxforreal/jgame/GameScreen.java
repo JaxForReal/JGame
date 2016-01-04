@@ -11,7 +11,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.jaxforreal.jgame.entity.Player;
-import com.jaxforreal.jgame.tile.TestAnimatedTile;
 
 public class GameScreen extends ScreenAdapter {
     public JGameMain game;
@@ -45,8 +44,6 @@ public class GameScreen extends ScreenAdapter {
         MapLoader mapLoader = new MapLoader(gameManager);
         map_test_ = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
         map_test_.addMapObject(player_test_);
-        map_test_.setTileAt(0, 0, new TestAnimatedTile(gameManager, 2));
-        Gdx.app.log("tileName", mapLoader.getSaveNameById(1));
 
         //y up projection
         camera.setToOrtho(false, 3200, 1800);
@@ -57,8 +54,8 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         map_test_.update(delta);
-        temp.set(player_test_.getTilePosition());
-        //camera.position.set(map_test_.unproject(temp), 0);
+        temp.set(map_test_.getLerpedPosition(player_test_));
+        camera.position.set(map_test_.unproject(temp), 0);
         camera.update();
 
 
