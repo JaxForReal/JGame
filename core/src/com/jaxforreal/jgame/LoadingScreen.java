@@ -16,7 +16,7 @@ public class LoadingScreen extends ScreenAdapter {
     private JGameMain game;
     private AssetManager assetManager;
 
-    {
+    static {
         TITLE_STRINGS.add("<Title text here>");
         TITLE_STRINGS.add("here is another title string");
         TITLE_STRINGS.add("boring text");

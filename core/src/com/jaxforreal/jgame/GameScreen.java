@@ -29,7 +29,7 @@ public class GameScreen extends ScreenAdapter {
     private float cameraShakeTimeLeft = 0;
     private float cameraShakiness = 0;
 
-    //assetManager is passed in from LoadingScreen
+    //assetManager is passed in from LoadingScreen or MainMenuScreen
     public GameScreen(JGameMain game, AssetManager assetManager) {
 
         //initialization

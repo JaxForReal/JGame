@@ -1,13 +1,13 @@
 package com.jaxforreal.jgame;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.XmlReader;
 import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.entity.TestMob;
 import com.jaxforreal.jgame.tile.Grass;
 import com.jaxforreal.jgame.tile.Tile;
 import com.jaxforreal.jgame.tile.Wood;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class MapLoader {
     GameManager gameManager;
     XmlReader xmlReader = new XmlReader();
-    private HashMap<String, Tile> tileSaveNames;
+    private ArrayMap<String, Tile> tileSaveNames;
     private HashMap<String, Entity> objectIds;
 
     /**
@@ -30,7 +30,7 @@ public class MapLoader {
         this.gameManager = gameManager;
 
         //these are all the mappings for string -> tileType when reading map txt files
-        tileSaveNames = new HashMap<String, Tile>();
+        tileSaveNames = new ArrayMap<String, Tile>();
         tileSaveNames.put(".", new Grass(gameManager, 0));
         tileSaveNames.put("w", new Wood(gameManager, 1));
 
@@ -120,29 +120,31 @@ public class MapLoader {
         }
     }
 
-    private void saveTiles(Map map, String tileDataPath) {
-        String mapString = "";
-        for (int iterX = 0; iterX < map.getWidthInTiles(); iterX++) {
-            for (int iterY = 0; iterY < map.getHeightInTiles(); iterY++) {
-                //TODO
-            }
-        }
-    }
-
-    @Nullable
-    public String getSaveNameById(int id) {
-        for (Tile valueTile : tileSaveNames.values()) {
-            if (valueTile.id == id) {
-
-                //get key from valueTile
-                for (String key : tileSaveNames.keySet()) {
-                    if (tileSaveNames.get(key).equals(valueTile)) {
-                        return key;
-                    }
-                }
-
-            }
-        }
-        return null;
-    }
+//    private void saveTiles(Map map, String tileDataPath) {
+//        String mapString = "";
+//        for (int iterY = 0; iterY < map.getHeightInTiles(); iterY++) {
+//            for (int iterX = 0; iterX < map.getWidthInTiles(); iterX++) {
+//                //4-level deep forloop, oh no
+//                String tileString = getSaveNameById(map.getTileAt(iterX, iterY).id);
+//                //TODO
+//            }
+//        }
+//    }
+//
+//    @Nullable
+//    public String getSaveNameById(int id) {
+//        for (Tile valueTile : tileSaveNames.values()) {
+//            if (valueTile.id == id) {
+//
+//                //get key from valueTile
+//                for (String key : tileSaveNames.keySet()) {
+//                    if (tileSaveNames.get(key).equals(valueTile)) {
+//                        return key;
+//                    }
+//                }
+//
+//            }
+//        }
+//        return null;
+//    }
 }

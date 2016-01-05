@@ -15,8 +15,6 @@ public class JGameMain extends Game {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
         //LoadingScreen inits GameScreen
-        //setScreen(new LoadingScreen(this));
-
         setScreen(new LoadingScreen(this));
     }
 }
