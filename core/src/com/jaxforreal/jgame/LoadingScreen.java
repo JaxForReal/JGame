@@ -61,7 +61,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         //goto new screen if finished
         if (assetManager.getProgress() == 1) {
-            game.setScreen(new GameScreen(game, assetManager));
+            game.setScreen(new MainMenuScreen(game, assetManager));
             dispose();
         }
     }
