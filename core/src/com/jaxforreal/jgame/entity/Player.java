@@ -50,6 +50,9 @@ public class Player extends Entity {
         boolean success = super.tryMove(direction);
         if (success) {
             timeSinceLastMove = 0;
+        } else {
+            //player collided with wall
+            gameManager.gameScreen.doCameraShake(0.02f, 60f);
         }
         return success;
     }

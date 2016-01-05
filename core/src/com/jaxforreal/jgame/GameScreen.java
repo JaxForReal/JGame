@@ -58,8 +58,6 @@ public class GameScreen extends ScreenAdapter {
         camera.setToOrtho(false, 3200, 1800);
         camera.position.set(-50, -50, 0);
         camera.update();
-
-        doCameraShake(5f, 50f);
     }
 
     @Override
