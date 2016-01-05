@@ -7,15 +7,13 @@ import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
 
 public abstract class Entity {
-    protected float movePerSecond = 4f;
-
     public boolean isMoving;
     /**
      * [if moving] the amount moved from prev to new
      * scale of 0 -> 1
      */
     public float lerpAlpha;
-
+    protected float movePerSecond = 4f;
     protected Map parentMap;
     protected GameManager gameManager;
 

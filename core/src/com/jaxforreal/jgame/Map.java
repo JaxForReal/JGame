@@ -73,10 +73,10 @@ public class Map {
 
         //render mapObjects
         for (Entity entity : entities) {
-                entityPosiionUtil = getLerpedPosition(entity);
-                entity.render(spriteBatch,
-                        mapX + (entityPosiionUtil.x * tileSize),
-                        mapY + (entityPosiionUtil.y * tileSize));
+            entityPosiionUtil = getLerpedPosition(entity);
+            entity.render(spriteBatch,
+                    mapX + (entityPosiionUtil.x * tileSize),
+                    mapY + (entityPosiionUtil.y * tileSize));
         }
     }
 
@@ -97,7 +97,7 @@ public class Map {
      * takes into account tilePosition, previousPosition, and lerpAlpha
      */
     public Vector2 getLerpedPosition(Entity entity) {
-        if(entity.isMoving) {
+        if (entity.isMoving) {
             entityPosiionUtil.set(entity.getPreviousPosition());
             entityPosiionUtil.lerp(entity.getTilePosition(), entity.lerpAlpha);
         } else {

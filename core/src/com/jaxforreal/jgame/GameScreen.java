@@ -92,7 +92,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void updateCameraShake(float delta) {
-        if(cameraShakeTimeLeft > 0) {
+        if (cameraShakeTimeLeft > 0) {
             cameraShakeTimeLeft -= delta;
             cameraShakeOffset.set(
                     gameManager.random.nextFloat() * cameraShakiness,

@@ -12,16 +12,16 @@ import com.badlogic.gdx.utils.Array;
 
 public class LoadingScreen extends ScreenAdapter {
     static final Array<String> TITLE_STRINGS = new Array<String>();
+    private SpriteBatch spriteBatch;
+    private JGameMain game;
+    private AssetManager assetManager;
+
     {
         TITLE_STRINGS.add("<Title text here>");
         TITLE_STRINGS.add("here is another title string");
         TITLE_STRINGS.add("boring text");
         TITLE_STRINGS.add("hello there");
     }
-
-    private SpriteBatch spriteBatch;
-    private JGameMain game;
-    private AssetManager assetManager;
 
     //TODO (maybe) specify which assets to load in a different class??
     public LoadingScreen(JGameMain game) {

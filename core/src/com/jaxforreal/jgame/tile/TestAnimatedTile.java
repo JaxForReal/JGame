@@ -13,8 +13,8 @@ public class TestAnimatedTile extends AnimatedTile {
         Texture animSource = gameManager.assets.get("core/assets/test_animation.png");
         TextureRegion[][] grid = TextureRegion.split(animSource, 8, 8);
         Array<TextureRegion> regionList = new Array<TextureRegion>();
-        for(TextureRegion[] column : grid) {
-            for(TextureRegion textureRegion : column) {
+        for (TextureRegion[] column : grid) {
+            for (TextureRegion textureRegion : column) {
                 regionList.add(textureRegion);
             }
         }

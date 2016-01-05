@@ -62,11 +62,7 @@ public class Player extends Entity {
         spriteBatch.draw(
                 //placeholder asset
                 gameManager.assets.get("core/assets/tiles/wood_red.png", Texture.class),
-                x,
-                y,
-                parentMap.tileSize,
-                parentMap.tileSize
-        );
+                x, y, parentMap.tileSize, parentMap.tileSize);
     }
 
     @Override
