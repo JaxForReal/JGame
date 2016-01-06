@@ -25,7 +25,7 @@ public class Player extends Entity {
     public void update(float delta) {
         super.update(delta);
         timeSinceLastMove += delta;
-        if (timeSinceLastMove > (1 / movePerSecond)) {
+        if (timeSinceLastMove > 0.2f) {
             if (pressedKeys.contains(Input.Keys.W, false)) {
                 tryMove(Direction.UP);
                 return;

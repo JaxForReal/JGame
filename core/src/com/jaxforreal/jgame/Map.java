@@ -19,17 +19,10 @@ public class Map {
     private Tile[][] tiles;
     private Array<Entity> entities;
 
-    /**
-     * temporary object to cut down on GC
-     * used to calculate animations/locations
-     */
-    private Vector2 entityPositionUtil;
-
     public Map(int width, int height) {
         //initialize tile array
         tiles = new Tile[width][height];
         entities = new Array<Entity>(false, 10, Entity.class);
-        entityPositionUtil = new Vector2();
     }
 
     /**
@@ -73,10 +66,9 @@ public class Map {
 
         //render mapObjects
         for (Entity entity : entities) {
-            entityPositionUtil = getLerpedPosition(entity);
             entity.render(spriteBatch,
-                    mapX + (entityPositionUtil.x * tileSize),
-                    mapY + (entityPositionUtil.y * tileSize));
+                    mapX + (entity.getTilePosition().x * tileSize),
+                    mapY + (entity.getTilePosition().y * tileSize));
         }
     }
 
@@ -88,22 +80,6 @@ public class Map {
      */
     public Vector2 unproject(Vector2 tileCoords) {
         return tileCoords.scl((float) tileSize);
-    }
-
-    //TODO maybe move somewhere else?
-
-    /**
-     * returns the animated position of entity
-     * takes into account tilePosition, previousPosition, and lerpAlpha
-     */
-    public Vector2 getLerpedPosition(Entity entity) {
-        if (entity.isMoving) {
-            entityPositionUtil.set(entity.getPreviousPosition());
-            entityPositionUtil.lerp(entity.getTilePosition(), entity.lerpAlpha);
-        } else {
-            entityPositionUtil.set(entity.getTilePosition());
-        }
-        return entityPositionUtil;
     }
 
     public int getWidthInTiles() {

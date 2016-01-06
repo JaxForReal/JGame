@@ -64,8 +64,8 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta) {
         map_test_.update(delta);
 
-        //camera follow
-        temp.set(map_test_.getLerpedPosition(player_test_));
+        //camera follow. use temp var to avoid modifying player's vector2
+        temp.set(player_test_.getTilePosition());
         camera.position.set(map_test_.unproject(temp), 0);
         updateCameraShake(delta);
         camera.update();

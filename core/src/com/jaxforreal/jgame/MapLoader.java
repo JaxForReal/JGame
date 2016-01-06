@@ -65,7 +65,7 @@ public class MapLoader {
     }
 
     public void saveToFile(Map map, String tileDataPath, String objectDataPath) {
-
+        //TODO saving sort out
     }
 
     /**

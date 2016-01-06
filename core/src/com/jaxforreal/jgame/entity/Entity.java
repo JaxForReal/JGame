@@ -7,13 +7,6 @@ import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
 
 public abstract class Entity {
-    public boolean isMoving;
-    /**
-     * [if moving] the amount moved from prev to new
-     * scale of 0 -> 1
-     */
-    public float lerpAlpha;
-    protected float movePerSecond = 4f;
     protected Map parentMap;
     protected GameManager gameManager;
 
@@ -21,30 +14,16 @@ public abstract class Entity {
      * the current position that this entity is at OR currently moving to
      */
     private Vector2 tilePosition;
-    /**
-     * previous position that this entity was at before move
-     * (or currently moving from this position)
-     */
-    private Vector2 previousPosition;
 
     public Entity(GameManager gameManager) {
         this.gameManager = gameManager;
         this.tilePosition = new Vector2();
-        this.previousPosition = new Vector2();
     }
 
     /**
      * update tileX and tileY here
      */
     public void update(float delta) {
-        if (isMoving) {
-            lerpAlpha += delta * movePerSecond;
-        }
-        //if close to 1
-        if (lerpAlpha >= 0.95f) {
-            isMoving = false;
-            lerpAlpha = 0;
-        }
     }
 
     /**
@@ -71,10 +50,7 @@ public abstract class Entity {
 
         //if not solid, move to
         if (!parentMap.getTileAt((int) possiblePos.x, (int) possiblePos.y).isSolid()) {
-            previousPosition.set(tilePosition);
             tilePosition.set(possiblePos);
-            lerpAlpha = 0;
-            isMoving = true;
             return true;
         }
         return false;
@@ -82,10 +58,6 @@ public abstract class Entity {
 
     public Vector2 getTilePosition() {
         return tilePosition;
-    }
-
-    public Vector2 getPreviousPosition() {
-        return previousPosition;
     }
 
     /**
