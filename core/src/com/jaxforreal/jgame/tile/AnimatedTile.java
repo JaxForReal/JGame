@@ -1,7 +1,7 @@
 package com.jaxforreal.jgame.tile;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.GameManager;
 
 public abstract class AnimatedTile extends Tile {
@@ -21,7 +21,7 @@ public abstract class AnimatedTile extends Tile {
     }
 
     @Override
-    public void render(SpriteBatch spriteBatch, float x, float y, float w, float h) {
+    public void render(Batch spriteBatch, float x, float y, float w, float h) {
         spriteBatch.draw(animation.getKeyFrame(animationStateTime, true), x, y, w, h);
     }
 

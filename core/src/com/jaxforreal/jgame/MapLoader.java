@@ -60,7 +60,7 @@ public class MapLoader {
      */
     public Map loadFromFile(String tileDataPath, String objectDataPath) {
         Map newMap = loadTiles(tileDataPath);
-        loadMapObjects(newMap, objectDataPath);
+        loadEntities(newMap, objectDataPath);
         return newMap;
     }
 
@@ -101,17 +101,17 @@ public class MapLoader {
      * load all tileMapObjects on map
      * uses Map.addMapObject(...)
      */
-    private void loadMapObjects(Map map, String objectDataPath) {
+    private void loadEntities(Map map, String objectDataPath) {
         try {
             XmlReader.Element objectXmlData = xmlReader.parse(Gdx.files.internal(objectDataPath));
 
             for (XmlReader.Element childObjectXml : objectXmlData.getChildrenByName("obj")) {
                 //get new object by cloning it from the String->Entity map
                 Entity newMapObject = objectIds.get(childObjectXml.get("type")).getClone();
-                newMapObject.getTilePosition().set(
+                map.addMapObject(newMapObject);
+                newMapObject.setTilePosition(
                         childObjectXml.getInt("x"),
                         childObjectXml.getInt("y"));
-                map.addMapObject(newMapObject);
             }
 
         } catch (IOException e) {

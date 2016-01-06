@@ -1,7 +1,7 @@
 package com.jaxforreal.jgame.entity;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 
@@ -16,10 +16,7 @@ public class TestMob extends Entity {
         texture = gameManager.assets.get("core/assets/tiles/lava.png", Texture.class);
     }
 
-    @Override
     public void update(float delta) {
-        super.update(delta);
-
         elapsedTime += delta;
         //(1 / movePerSecond) is number of seconds 1 move takes
         if (elapsedTime > 0.5f) {
@@ -29,8 +26,8 @@ public class TestMob extends Entity {
     }
 
     @Override
-    public void render(SpriteBatch spriteBatch, float x, float y) {
-        spriteBatch.draw(texture, x, y, parentMap.tileSize, parentMap.tileSize);
+    public void draw(Batch spriteBatch, float parentAlpha) {
+        spriteBatch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
 
     @Override

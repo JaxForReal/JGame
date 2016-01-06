@@ -3,7 +3,7 @@ package com.jaxforreal.jgame.entity;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
@@ -14,18 +14,15 @@ public class Player extends Entity {
 
     public PlayerInputProcessor inputProcessor = new PlayerInputProcessor();
     private Array<Integer> pressedKeys = new Array<Integer>();
-    private float timeSinceLastMove;
 
     public Player(GameManager gameManager) {
         super(gameManager);
     }
 
-    @SuppressWarnings("UnnecessaryReturnStatement")
     @Override
-    public void update(float delta) {
-        super.update(delta);
-        timeSinceLastMove += delta;
-        if (timeSinceLastMove > 0.2f) {
+    public void act(float delta) {
+        super.act(delta);
+        if (isMoving()) {
             if (pressedKeys.contains(Input.Keys.W, false)) {
                 tryMove(Direction.UP);
                 return;
@@ -40,29 +37,14 @@ public class Player extends Entity {
             }
             if (pressedKeys.contains(Input.Keys.D, false)) {
                 tryMove(Direction.RIGHT);
-                return;
             }
         }
     }
 
     @Override
-    protected boolean tryMove(Direction direction) {
-        boolean success = super.tryMove(direction);
-        if (success) {
-            timeSinceLastMove = 0;
-        } else {
-            //player collided with wall
-            gameManager.gameScreen.doCameraShake(0.02f, 60f);
-        }
-        return success;
-    }
-
-    @Override
-    public void render(SpriteBatch spriteBatch, float x, float y) {
-        spriteBatch.draw(
-                //placeholder asset
-                gameManager.assets.get("core/assets/tiles/wood_red.png", Texture.class),
-                x, y, parentMap.tileSize, parentMap.tileSize);
+    public void draw(Batch batch, float parentAlpha) {
+        batch.draw(gameManager.assets.get("core/assets/tiles/dirt.png", Texture.class),
+                getX(), getY(), getWidth(), getHeight());
     }
 
     @Override

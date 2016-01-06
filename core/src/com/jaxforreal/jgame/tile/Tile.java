@@ -1,6 +1,6 @@
 package com.jaxforreal.jgame.tile;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.GameManager;
 import com.sun.istack.internal.Nullable;
 
@@ -20,7 +20,7 @@ public abstract class Tile {
 
     public abstract void update(float delta);
 
-    public abstract void render(SpriteBatch spriteBatch, float x, float y, float w, float h);
+    public abstract void render(Batch spriteBatch, float x, float y, float w, float h);
 
     public abstract Tile getClone();
 
