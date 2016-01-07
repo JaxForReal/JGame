@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.tile.Tile;
 
-public class Map extends Group{
+public class Map extends Group {
     /**
      * the width and height of each tile
      */

@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 
-//TODO this is just elapsedTime = new Random().nextFloat();a placeholder, need to make Mob superclass
 public class TestMob extends Entity {
     Texture texture;
     float elapsedTime;
@@ -19,7 +18,7 @@ public class TestMob extends Entity {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(!isMoving()) {
+        if (!isMoving()) {
             tryMove(Direction.random());
         }
     }

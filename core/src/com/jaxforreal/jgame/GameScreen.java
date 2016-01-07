@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jaxforreal.jgame.entity.Player;
 
 public class GameScreen extends ScreenAdapter {
-    //TODO not safe...(must be accessed after game init/LoadingScreen)
     public static GameManager gameManager;
     public JGameMain game;
     public Stage stage;

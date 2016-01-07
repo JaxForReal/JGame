@@ -65,7 +65,6 @@ public class MapLoader {
     }
 
     public void saveToFile(Map map, String tileDataPath, String objectDataPath) {
-        //TODO saving sort out
     }
 
     /**
@@ -103,13 +102,13 @@ public class MapLoader {
      */
     private void loadEntities(Map map, String objectDataPath) {
         try {
-            XmlReader.Element objectXmlData = xmlReader.parse(Gdx.files.internal(objectDataPath));
+            XmlReader.Element entityXmlData = xmlReader.parse(Gdx.files.internal(objectDataPath));
 
-            for (XmlReader.Element childObjectXml : objectXmlData.getChildrenByName("obj")) {
+            for (XmlReader.Element childObjectXml : entityXmlData.getChildrenByName("obj")) {
                 //get new object by cloning it from the String->Entity map
-                Entity newMapObject = objectIds.get(childObjectXml.get("type")).getClone();
-                map.addMapObject(newMapObject);
-                newMapObject.setTilePosition(
+                Entity newEntity = objectIds.get(childObjectXml.get("type")).getClone();
+                map.addMapObject(newEntity);
+                newEntity.setTilePosition(
                         childObjectXml.getInt("x"),
                         childObjectXml.getInt("y"));
             }

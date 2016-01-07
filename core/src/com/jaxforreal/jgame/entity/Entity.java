@@ -100,6 +100,8 @@ public abstract class Entity extends Actor {
 
     /**
      * this method is called when you add this entity to parent map
+     * <p/>
+     * must be called before setting tile position
      */
     public void setParentMap(Map parentMap) {
         this.parentMap = parentMap;
