@@ -9,6 +9,7 @@ public abstract class Tile {
 
     /**
      * ID is used to save tiles back to text format
+     * and to equate tiles
      */
     public final int id;
     public GameManager gameManager;
@@ -19,6 +20,11 @@ public abstract class Tile {
     }
 
     public abstract void update(float delta);
+
+    @Override
+    public boolean equals(Object obj) {
+        return id == ((Tile)obj).id;
+    }
 
     public abstract void render(Batch spriteBatch, float x, float y, float w, float h);
 

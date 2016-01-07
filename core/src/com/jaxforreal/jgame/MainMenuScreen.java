@@ -44,12 +44,14 @@ public class MainMenuScreen extends ScreenAdapter {
         textButtonStyle.fontColor = Color.BLUE;
 
         //setup button
-        TextButton startButton = new TextButton("Start Game", textButtonStyle);
+        final TextButton startButton = new TextButton("Start Game", textButtonStyle);
         //onclick
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new GameScreen(game, assetManager));
+                startButton.setDisabled(true);
+                dispose();
             }
         });
         table.add(startButton);
