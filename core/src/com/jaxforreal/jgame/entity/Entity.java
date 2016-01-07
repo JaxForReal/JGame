@@ -2,6 +2,7 @@ package com.jaxforreal.jgame.entity;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
@@ -11,7 +12,7 @@ public abstract class Entity extends Actor {
     protected Map parentMap;
     protected GameManager gameManager;
     private MoveByAction moveByAction;
-    private float moveDuration = 0.05f;
+    private float moveDuration = 0.2f;
     private boolean isMoving;
     private float timeSinceLastMove = 0f;
 
@@ -29,9 +30,9 @@ public abstract class Entity extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(isMoving) {
+        if (isMoving) {
             timeSinceLastMove += delta;
-            if(timeSinceLastMove >= moveDuration) {
+            if (timeSinceLastMove >= moveDuration) {
                 isMoving = false;
             }
         }
@@ -42,30 +43,33 @@ public abstract class Entity extends Actor {
      */
     public void setTilePosition(float x, float y) {
         tilePosition.set(x, y);
-        setPosition(x * parentMap.tileSize, y * parentMap.tileSize);
+        addAction(Actions.moveTo(x * parentMap.tileSize, y * parentMap.tileSize));
         setBounds(x, y, parentMap.tileSize, parentMap.tileSize);
     }
 
     public boolean isMoving() {
         return isMoving;
     }
+
     /**
      * @return whether or not the object actually moved (false if collided with solid tile)
      */
     protected boolean tryMove(Direction direction) {
         //TODO optimize obj creation
+        //lol who cares
         Vector2 possiblePos = new Vector2(
                 getTilePosition().x + direction.x(),
                 getTilePosition().y + direction.y());
 
-        if (!isCollision(possiblePos)) {
+        if (canMoveTo(possiblePos)) {
             //update animation
+
             moveByAction.reset();
             moveByAction.setAmount(
                     direction.x() * parentMap.tileSize,
                     direction.y() * parentMap.tileSize);
             moveByAction.setDuration(moveDuration);
-            moveByAction.setActor(this);
+            addAction(moveByAction);
 
             //update tilePosition
             tilePosition.set(possiblePos);
@@ -82,14 +86,12 @@ public abstract class Entity extends Actor {
     /**
      * @return true if tilePosition is a collision/invalid move
      */
-    private boolean isCollision(Vector2 tilePosition) {
-        return false;
-
-//        return ((tilePosition.x < 0) ||
-//                (tilePosition.y < 0) ||
-//                (tilePosition.x >= parentMap.getWidthInTiles()) ||
-//                (tilePosition.y >= parentMap.getHeightInTiles())) &&
-//                (parentMap.getTileAt((int) tilePosition.x, (int) tilePosition.y).isSolid());
+    private boolean canMoveTo(Vector2 tilePosition) {
+        return ((tilePosition.x > 0) ||
+                (tilePosition.y > 0) ||
+                (tilePosition.x <= parentMap.getWidthInTiles()) ||
+                (tilePosition.y <= parentMap.getHeightInTiles())) &&
+                (!parentMap.getTileAt((int) tilePosition.x, (int) tilePosition.y).isSolid());
     }
 
     public Vector2 getTilePosition() {

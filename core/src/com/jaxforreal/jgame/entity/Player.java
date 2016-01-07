@@ -22,7 +22,7 @@ public class Player extends Entity {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (isMoving()) {
+        if (!isMoving()) {
             if (pressedKeys.contains(Input.Keys.W, false)) {
                 tryMove(Direction.UP);
                 return;

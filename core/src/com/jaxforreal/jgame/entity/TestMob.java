@@ -16,12 +16,11 @@ public class TestMob extends Entity {
         texture = gameManager.assets.get("core/assets/tiles/lava.png", Texture.class);
     }
 
-    public void update(float delta) {
-        elapsedTime += delta;
-        //(1 / movePerSecond) is number of seconds 1 move takes
-        if (elapsedTime > 0.5f) {
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if(!isMoving()) {
             tryMove(Direction.random());
-            elapsedTime = 0;
         }
     }
 
