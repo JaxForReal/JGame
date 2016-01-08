@@ -16,13 +16,13 @@ public abstract class AnimatedTile extends Tile {
     }
 
     @Override
-    public void update(float delta) {
+    public void act(float delta) {
         animationStateTime += delta;
     }
 
     @Override
-    public void render(Batch spriteBatch, float x, float y, float w, float h) {
-        spriteBatch.draw(animation.getKeyFrame(animationStateTime, true), x, y, w, h);
+    public void draw(Batch spriteBatch, float parentAlpha) {
+        spriteBatch.draw(animation.getKeyFrame(animationStateTime, true), getX(), getY(), getWidth(), getHeight());
     }
 
     @Override

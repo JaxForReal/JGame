@@ -98,7 +98,7 @@ public class MapLoader {
 
     /**
      * load all tileMapObjects on map
-     * uses Map.addMapObject(...)
+     * uses Map.addEntityAt(...)
      */
     private void loadEntities(Map map, String objectDataPath) {
         try {
@@ -107,10 +107,10 @@ public class MapLoader {
             for (XmlReader.Element childObjectXml : entityXmlData.getChildrenByName("obj")) {
                 //get new object by cloning it from the String->Entity map
                 Entity newEntity = objectIds.get(childObjectXml.get("type")).getClone();
-                map.addMapObject(newEntity);
-                newEntity.setTilePosition(
+                map.addEntityAt(
                         childObjectXml.getInt("x"),
-                        childObjectXml.getInt("y"));
+                        childObjectXml.getInt("y"),
+                        newEntity);
             }
 
         } catch (IOException e) {

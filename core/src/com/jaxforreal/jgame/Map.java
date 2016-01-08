@@ -1,8 +1,8 @@
 package com.jaxforreal.jgame;
 
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.tile.Tile;
 
@@ -27,40 +27,21 @@ public class Map extends Group {
      */
     void setTileAt(int x, int y, Tile tile) {
         tiles[x][y] = tile;
+        tile.addAction(Actions.moveTo(x * tileSize, y * tileSize));
+        tile.setBounds(x * tileSize, y * tileSize, tileSize, tileSize);
+        addActor(tile);
     }
 
     /**
      * Used in MapLoader to init TileMapObjects
      * automagically sets MapObject's parentMap
+     * <p/>
+     * Assumes Entity's tile position is set with Entity.setTilePosition
      */
-    void addMapObject(Entity entity) {
-        addActor(entity);
+    void addEntityAt(int x, int y, Entity entity) {
         entity.setParentMap(this);
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-        for (Tile[] column : tiles) {
-            for (Tile tile : column) {
-                tile.update(delta);
-            }
-        }
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        //render static tiles
-        for (int iterX = 0; iterX < tiles.length; iterX++) {
-            for (int iterY = 0; iterY < tiles[0].length; iterY++) {
-                Tile tile = getTileAt(iterX, iterY);
-                if (tile != null) {
-                    tile.render(batch, getX() + (iterX * tileSize), getY() + (iterY * tileSize), tileSize, tileSize);
-                }
-            }
-        }
-
-        super.draw(batch, parentAlpha);
+        entity.setTilePosition(x, y);
+        addActor(entity);
     }
 
     public int getWidthInTiles() {

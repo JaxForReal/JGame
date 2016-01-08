@@ -38,8 +38,7 @@ public class GameScreen extends ScreenAdapter {
         //load new map and add player
         MapLoader mapLoader = new MapLoader(gameManager);
         map = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
-        map.addMapObject(player);
-        player.setTilePosition(1, 1);
+        map.addEntityAt(1, 1, player);
         stage.setKeyboardFocus(player);
 
         stage.addActor(map);

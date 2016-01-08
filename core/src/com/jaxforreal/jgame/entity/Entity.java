@@ -41,7 +41,7 @@ public abstract class Entity extends Actor {
     /**
      * Entity must have a parent map for this to work!
      */
-    public void setTilePosition(float x, float y) {
+    public void setTilePosition(int x, int y) {
         tilePosition.set(x, y);
         addAction(Actions.moveTo(x * parentMap.tileSize, y * parentMap.tileSize));
         setBounds(x, y, parentMap.tileSize, parentMap.tileSize);

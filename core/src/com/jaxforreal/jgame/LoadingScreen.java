@@ -55,7 +55,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         spriteBatch.begin();
         String loaded = "Loading " + (int) (assetManager.getProgress() * 100f) + "%";
-        //interesting note: fonts render below Y value, instead of above...wat?
+        //interesting note: fonts draw below Y value, instead of above...wat?
         assetManager.get("core/assets/font.fnt", BitmapFont.class)
                 .draw(spriteBatch, loaded, 0, Gdx.graphics.getHeight());
         spriteBatch.end();
