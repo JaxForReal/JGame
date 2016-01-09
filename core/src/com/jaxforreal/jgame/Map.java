@@ -11,7 +11,7 @@ public class Map extends Group {
     /**
      * the width and height of each tile
      */
-    public final int tileSize = 100;
+    public final int tileSize = 60;
 
     /**
      * NOTE: tiles are stored in a Tile[x][y] format.

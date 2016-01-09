@@ -9,6 +9,8 @@ import com.jaxforreal.jgame.GameManager;
 public class TileList {
     public Tile WOOD;
     public Tile GRASS;
+    public Tile WATER;
+    public Tile STONE;
 
     public TileList(GameManager gameManager) {
         WOOD = new SimpleTile(gameManager,
@@ -17,6 +19,14 @@ public class TileList {
                 0);
         GRASS = new SimpleTile(gameManager,
                 gameManager.assets.get("core/assets/tiles/grass_top.png", Texture.class),
+                false,
+                1);
+        WATER = new SimpleTile(gameManager,
+                gameManager.assets.get("core/assets/tiles/water.png", Texture.class),
+                true,
+                2);
+        STONE = new SimpleTile(gameManager,
+                gameManager.assets.get("core/assets/tiles/stone.png", Texture.class),
                 false,
                 1);
     }
