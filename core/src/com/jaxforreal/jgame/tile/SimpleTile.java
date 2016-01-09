@@ -6,11 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Util;
 
-public abstract class SimpleTile extends Tile {
+public class SimpleTile extends Tile {
     protected Texture texture;
+    private boolean isSolid;
 
-    public SimpleTile(GameManager gameManager, int id) {
+    public SimpleTile(GameManager gameManager, Texture texture, boolean isSolid, int id) {
         super(gameManager, id);
+        this.texture = texture;
+        this.isSolid = isSolid;
     }
 
     @Override
@@ -19,8 +22,11 @@ public abstract class SimpleTile extends Tile {
     }
 
     @Override
-    public abstract Tile getClone();
+    public Tile getClone() {
+        return new SimpleTile(gameManager, texture, isSolid, id);
+    }
 
-    @Override
-    public abstract boolean isSolid();
+    public boolean isSolid() {
+        return isSolid;
+    }
 }

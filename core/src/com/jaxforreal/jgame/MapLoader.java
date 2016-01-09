@@ -5,9 +5,8 @@ import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.XmlReader;
 import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.entity.TestMob;
-import com.jaxforreal.jgame.tile.Grass;
 import com.jaxforreal.jgame.tile.Tile;
-import com.jaxforreal.jgame.tile.Wood;
+import com.jaxforreal.jgame.tile.TileList;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,6 +20,7 @@ public class MapLoader {
     XmlReader xmlReader = new XmlReader();
     private ArrayMap<String, Tile> tileSaveNames;
     private HashMap<String, Entity> objectIds;
+    private TileList tileList;
 
     /**
      * @param gameManager the game's GameManager.
@@ -28,11 +28,12 @@ public class MapLoader {
      */
     public MapLoader(GameManager gameManager) {
         this.gameManager = gameManager;
+        tileList = new TileList(gameManager);
 
         //these are all the mappings for string -> tileType when reading map txt files
         tileSaveNames = new ArrayMap<String, Tile>();
-        tileSaveNames.put(".", new Grass(gameManager, 0));
-        tileSaveNames.put("w", new Wood(gameManager, 1));
+        tileSaveNames.put(".", tileList.GRASS);
+        tileSaveNames.put("w", tileList.WOOD);
 
         for (Tile tile : tileSaveNames.values()) {
             tile.gameManager = gameManager;
