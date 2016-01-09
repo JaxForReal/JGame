@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Util;
 
+/**
+ * Simple tile without custom behaviour
+ */
 public class SimpleTile extends Tile {
     protected Texture texture;
     private boolean isSolid;

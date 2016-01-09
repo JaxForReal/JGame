@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jaxforreal.jgame.GameManager;
 
+/**
+ * A tile that is automatically updated with an Animation
+ */
 public abstract class AnimatedTile extends Tile {
     /**
      * child classes need to instantiate animation

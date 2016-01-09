@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
+//TODO make loading indicator resize properly
 public class LoadingScreen extends ScreenAdapter {
     static final Array<String> TITLE_STRINGS = new Array<String>();
 
@@ -24,7 +25,6 @@ public class LoadingScreen extends ScreenAdapter {
     private JGameMain game;
     private AssetManager assetManager;
 
-    //TODO (maybe) specify which assets to load in a different class??
     public LoadingScreen(JGameMain game) {
         this.game = game;
         assetManager = new AssetManager();

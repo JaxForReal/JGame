@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.jaxforreal.jgame.GameManager;
 import com.sun.istack.internal.Nullable;
 
-public abstract class Tile extends Actor{
+public abstract class Tile extends Actor {
     //All tiles in game here
 
     /**
@@ -24,7 +24,7 @@ public abstract class Tile extends Actor{
 
     @Override
     public boolean equals(Object obj) {
-        return id == ((Tile)obj).id;
+        return (obj instanceof Tile) && (this.id == ((Tile) obj).id);
     }
 
     public abstract Tile getClone();

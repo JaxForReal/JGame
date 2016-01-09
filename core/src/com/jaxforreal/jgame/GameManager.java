@@ -5,7 +5,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import java.util.Random;
 
 /**
- * Globals for all members of GameScreen to interact with
+ * Globals for all members of GameScreen to interact with.
+ * This is passed to most game objects, so put needed globals here.
  */
 public class GameManager {
     public AssetManager assets;

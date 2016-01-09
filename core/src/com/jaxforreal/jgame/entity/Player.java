@@ -10,6 +10,10 @@ import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Util;
 
+/**
+ * Player entity that moves with key presses
+ * NOTE: call stage.setKeyboardFocus(player) for keyboard input to work
+ */
 public class Player extends Entity {
     //WASD key codes for com.badlogic.gdx.Input.Keys
     private static final int[] WASD = new int[]{51, 29, 47, 32};

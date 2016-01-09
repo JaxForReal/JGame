@@ -8,9 +8,13 @@ import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
 
+/**
+ * Entity in the game that can move
+ */
 public abstract class Entity extends Actor {
     protected Map parentMap;
     protected GameManager gameManager;
+
     private MoveByAction moveByAction;
     private float moveDuration = 0.2f;
     private boolean isMoving;
@@ -47,11 +51,16 @@ public abstract class Entity extends Actor {
         setBounds(x, y, parentMap.tileSize, parentMap.tileSize);
     }
 
+    /**
+     * @return whether or not the Entity is moving because tryMove() was called
+     */
     public boolean isMoving() {
         return isMoving;
     }
 
     /**
+     * Attempts to move in the specified Direction
+     *
      * @return whether or not the object actually moved (false if collided with solid tile)
      */
     protected boolean tryMove(Direction direction) {
@@ -62,8 +71,8 @@ public abstract class Entity extends Actor {
                 getTilePosition().y + direction.y());
 
         if (canMoveTo(possiblePos)) {
-            //update animation
 
+            //update animation
             moveByAction.reset();
             moveByAction.setAmount(
                     direction.x() * parentMap.tileSize,
@@ -107,7 +116,10 @@ public abstract class Entity extends Actor {
         this.parentMap = parentMap;
     }
 
-    //clone the Entity. copies all properties and metadata EXCEPT parentMap
-    //note: named getClone(), not clone() because java.lang.Object's clone() is annoying and gives "call super.clone()" warning
+    /**
+     * clone the Entity. copies all properties and metadata EXCEPT parentMap
+     * note: named getClone(), not clone() because java.lang.Object's clone() is annoying
+     * and gives "call super.clone()" warning
+     */
     public abstract Entity getClone();
 }
