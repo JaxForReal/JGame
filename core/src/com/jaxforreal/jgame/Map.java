@@ -2,7 +2,6 @@ package com.jaxforreal.jgame;
 
 
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.tile.Tile;
 
@@ -27,9 +26,8 @@ public class Map extends Group {
      */
     void setTileAt(int x, int y, Tile tile) {
         tiles[x][y] = tile;
-        tile.addAction(Actions.moveTo(x * tileSize, y * tileSize));
+        addActorAt(1000, tile);
         tile.setBounds(x * tileSize, y * tileSize, tileSize, tileSize);
-        addActor(tile);
     }
 
     /**

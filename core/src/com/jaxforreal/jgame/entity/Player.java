@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
+import com.jaxforreal.jgame.Util;
 
 public class Player extends Entity {
     //WASD key codes for com.badlogic.gdx.Input.Keys
@@ -63,8 +64,8 @@ public class Player extends Entity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(gameManager.assets.get("core/assets/tiles/dirt.png", Texture.class),
-                getX(), getY(), getWidth(), getHeight());
+        Util.drawWithActorProperties(batch, this,
+                gameManager.assets.get("core/assets/tiles/dirt.png", Texture.class));
     }
 
     @Override

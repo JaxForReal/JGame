@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
+import com.jaxforreal.jgame.Util;
 
 public class TestMob extends Entity {
     Texture texture;
@@ -25,7 +26,7 @@ public class TestMob extends Entity {
 
     @Override
     public void draw(Batch spriteBatch, float parentAlpha) {
-        spriteBatch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        Util.drawWithActorProperties(spriteBatch, this, texture);
     }
 
     @Override

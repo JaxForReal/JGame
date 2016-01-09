@@ -10,6 +10,12 @@ public class Wood extends SimpleTile {
     }
 
     @Override
+    public void act(float delta) {
+        super.act(delta);
+
+    }
+
+    @Override
     public Tile getClone() {
         return new Wood(gameManager, id);
     }
