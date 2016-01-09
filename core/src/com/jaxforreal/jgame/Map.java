@@ -1,7 +1,10 @@
 package com.jaxforreal.jgame;
 
 
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.jaxforreal.jgame.entity.Entity;
 import com.jaxforreal.jgame.tile.Tile;
 
@@ -10,6 +13,8 @@ public class Map extends Group {
      * the width and height of each tile
      */
     public final int tileSize = 100;
+
+    Action tilePopUp;
 
     /**
      * NOTE: tiles are stored in a Tile[x][y] format.
@@ -28,6 +33,18 @@ public class Map extends Group {
         tiles[x][y] = tile;
         addActorAt(1000, tile);
         tile.setBounds(x * tileSize, y * tileSize, tileSize, tileSize);
+        //add tile zoom up/in animation
+        tile.addAction(
+                Actions.sequence(
+                        //make tiny
+                        Actions.moveBy(tileSize / 2, -tileSize), Actions.scaleTo(0f, 0f),
+                        Actions.parallel(
+                                //zoom up
+                                Actions.moveBy(-tileSize / 2, tileSize, 0.5f, Interpolation.circle),
+                                Actions.scaleTo(1, 1, 0.5f, Interpolation.circle)
+                        )
+                )
+        );
     }
 
     /**
