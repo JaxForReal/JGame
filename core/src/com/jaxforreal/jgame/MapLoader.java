@@ -78,7 +78,7 @@ public class MapLoader {
         int width = mapLines[0].split(" ").length;
         int height = mapLines.length;
 
-        Map newMap = new Map(width, height);
+        Map newMap = new Map(width, height, gameManager);
 
         for (int yIter = 0; yIter < height; yIter++) {
             String[] tileStrings = mapLines[yIter].split(" ");

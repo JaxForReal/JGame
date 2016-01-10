@@ -96,10 +96,10 @@ public abstract class Entity extends Actor {
      * @return true if tilePosition is a collision/invalid move
      */
     private boolean canMoveTo(Vector2 tilePosition) {
-        return ((tilePosition.x > 0) ||
-                (tilePosition.y > 0) ||
-                (tilePosition.x <= parentMap.getWidthInTiles()) ||
-                (tilePosition.y <= parentMap.getHeightInTiles())) &&
+        return (tilePosition.x >= 0) &&
+                (tilePosition.y >= 0) &&
+                (tilePosition.x < parentMap.getWidthInTiles()) &&
+                (tilePosition.y < parentMap.getHeightInTiles()) &&
                 (!parentMap.getTileAt((int) tilePosition.x, (int) tilePosition.y).isSolid());
     }
 

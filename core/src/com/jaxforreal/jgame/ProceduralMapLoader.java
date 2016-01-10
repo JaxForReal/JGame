@@ -23,7 +23,7 @@ public class ProceduralMapLoader {
     }
 
     public Map load(int size) {
-        Map map = new Map(size, size);
+        Map map = new Map(size, size, gameManager);
         generator = new DiamondSquareGenerator(size, 50, 50, 2, gameManager.random.nextLong());
         float[][] gen = generator.generate();
 

@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jaxforreal.jgame.entity.Player;
+import com.jaxforreal.jgame.tile.TileList;
 
 public class GameScreen extends ScreenAdapter {
     public static GameManager gameManager = new GameManager();
@@ -30,6 +31,7 @@ public class GameScreen extends ScreenAdapter {
 
         gameManager.assets = assetManager;
         gameManager.gameScreen = this;
+        gameManager.tileList = new TileList(gameManager);
 
         Gdx.input.setInputProcessor(stage);
 

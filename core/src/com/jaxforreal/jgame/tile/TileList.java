@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.jaxforreal.jgame.GameManager;
 
 /**
- * A list of all the available tile types in the game
+ * A list of all the available tile types in the game.
+ *
+ *NOTE: Remember to clone these values, not use them directly!
  */
 public class TileList {
     public Tile WOOD;
@@ -27,7 +29,7 @@ public class TileList {
                 2);
         STONE = new SimpleTile(gameManager,
                 gameManager.assets.get("core/assets/tiles/stone.png", Texture.class),
-                false,
+                true,
                 1);
     }
 }
