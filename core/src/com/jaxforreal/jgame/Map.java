@@ -73,8 +73,8 @@ public class Map extends Group {
                         Actions.moveBy(tileSize / 2, -tileSize / 2), Actions.scaleTo(0f, 0f),
                         Actions.parallel(
                                 //zoom up
-                                Actions.moveBy(-tileSize / 2, tileSize / 2, 0.5f, Interpolation.circle),
-                                Actions.scaleTo(1, 1, 0.5f, Interpolation.circle)
+                                Actions.moveBy(-tileSize / 2, tileSize / 2, 0.25f, Interpolation.circle),
+                                Actions.scaleTo(1, 1, 0.25f, Interpolation.circle)
                         )
                 )
         );

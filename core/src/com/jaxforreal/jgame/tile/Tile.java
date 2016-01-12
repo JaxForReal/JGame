@@ -37,9 +37,9 @@ public abstract class Tile extends Actor {
     public abstract boolean isSolid();
 
     /**
-     * Returns the tile position in parent map
-     *
-     * this value is set in Map.setTileAt()
+     * Returns the tile position in parent map.
+     * This value is set in Map.setTileAt().
+     * Used to avoid searching over an array for tile positions
      */
     public Vector2 getPositionInParent() {
         return positionInParent;
