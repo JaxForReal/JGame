@@ -7,11 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.jaxforreal.jgame.Direction;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Map;
+import com.jaxforreal.jgame.MyCloneable;
 
 /**
  * Entity in the game that can move
  */
-public abstract class Entity extends Actor {
+public abstract class Entity extends Actor implements MyCloneable<Entity>{
     protected Map parentMap;
     protected GameManager gameManager;
 

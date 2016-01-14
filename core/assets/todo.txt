@@ -1,0 +1,10 @@
+Item framework:
+    Converting from inventory objects to entity objects...or same object different uses?
+    possibly ItemInfo object that gets passed from inventory object to entity.
+
+    Multiple instance approach:
+    Item(String name, Texture texture, Gamemanager gamemanager, Attribute... attributes)
+
+    Multiple class approach:
+
+Concentrate cloneables

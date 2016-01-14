@@ -4,9 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.jaxforreal.jgame.GameManager;
+import com.jaxforreal.jgame.MyCloneable;
 import com.sun.istack.internal.Nullable;
 
-public abstract class Tile extends Actor {
+public abstract class Tile extends Actor implements MyCloneable<Tile> {
     /**
      * ID is used to save tiles back to text format
      * and to equate tiles
