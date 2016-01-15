@@ -19,7 +19,7 @@ public class Water extends AnimatedTile {
                 regionList.add(textureRegion);
             }
         }
-        animation = new Animation(0.5f, regionList, Animation.PlayMode.LOOP);
+        animation = new Animation(0.25f, regionList, Animation.PlayMode.LOOP);
     }
 
     @Override

@@ -10,3 +10,4 @@ Item framework:
 Concentrate cloneables
 
 Make camera movement pixel perfect
+Mob class (impl by Player)
