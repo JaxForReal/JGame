@@ -11,3 +11,7 @@ Concentrate cloneables
 
 Make camera movement pixel perfect
 Mob class (impl by Player)
+
+add OnCollideWith(Entity otherEntity) in Entity
+
+add ItemEntity -> InventoryItem conversions and inventory(extends screen?) with Slot grids
