@@ -12,7 +12,7 @@ import com.jaxforreal.jgame.MyCloneable;
 /**
  * Entity in the game that can move
  */
-public abstract class Entity extends Actor implements MyCloneable<Entity>{
+public abstract class Entity extends Actor implements MyCloneable<Entity> {
     protected Map parentMap;
     protected GameManager gameManager;
 

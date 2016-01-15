@@ -38,8 +38,8 @@ public class ProceduralMapLoader {
     }
 
     private Tile getTileFromValue(float value) {
-        for(ObjectMap.Entry<Range, Tile> entry : tileThresholds) {
-            if(entry.key.isValueWithin(value)){
+        for (ObjectMap.Entry<Range, Tile> entry : tileThresholds) {
+            if (entry.key.isValueWithin(value)) {
                 return entry.value;
             }
         }

@@ -8,3 +8,5 @@ Item framework:
     Multiple class approach:
 
 Concentrate cloneables
+
+Make camera movement pixel perfect

@@ -5,8 +5,8 @@ import com.jaxforreal.jgame.GameManager;
 
 /**
  * A list of all the available tile types in the game.
- *
- *NOTE: Remember to clone these values, not use them directly!
+ * <p/>
+ * NOTE: Remember to clone these values, not use them directly!
  */
 public class TileList {
     public Tile WOOD;
@@ -20,16 +20,14 @@ public class TileList {
                 true,
                 0);
         GRASS = new SimpleTile(gameManager,
-                gameManager.assets.get("core/assets/tiles/grass_top.png", Texture.class),
+                gameManager.assets.get("core/assets/tiles/grass.png", Texture.class),
                 false,
                 1);
-        WATER = new SimpleTile(gameManager,
-                gameManager.assets.get("core/assets/tiles/water.png", Texture.class),
-                true,
-                2);
+        WATER = new Water(gameManager, 2);
+
         STONE = new SimpleTile(gameManager,
                 gameManager.assets.get("core/assets/tiles/stone.png", Texture.class),
                 true,
-                1);
+                3);
     }
 }

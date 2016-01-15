@@ -69,7 +69,7 @@ public class Player extends Entity {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         Util.drawWithActorProperties(batch, this,
-                gameManager.assets.get("core/assets/tiles/dirt.png", Texture.class));
+                gameManager.assets.get("core/assets/tiles/stoneRed.png", Texture.class));
     }
 
     @Override

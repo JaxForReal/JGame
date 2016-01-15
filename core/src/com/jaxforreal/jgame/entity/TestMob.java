@@ -13,7 +13,7 @@ public class TestMob extends Entity {
     public TestMob(GameManager gameManager) {
         super(gameManager);
         elapsedTime = gameManager.random.nextFloat() * 0.5f;
-        texture = gameManager.assets.get("core/assets/tiles/lava.png", Texture.class);
+        texture = gameManager.assets.get("core/assets/tiles/tree.png", Texture.class);
     }
 
     @Override

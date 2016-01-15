@@ -38,10 +38,10 @@ public class GameScreen extends ScreenAdapter {
         player = new Player(gameManager);
 
         //load new map and add player
-        //MapLoader mapLoader = new MapLoader(gameManager);
-        //map = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
-        ProceduralMapLoader mapLoader = new ProceduralMapLoader(gameManager);
-        map = mapLoader.load(33);
+        MapLoader mapLoader = new MapLoader(gameManager);
+        map = mapLoader.loadFromFile("core/assets/testmap.txt", "core/assets/testmap.xml");
+        //ProceduralMapLoader mapLoader = new ProceduralMapLoader(gameManager);
+        //map = mapLoader.load(33);
         map.addEntityAt(1, 1, player);
         stage.setKeyboardFocus(player);
 

@@ -40,8 +40,8 @@ public class Map extends Group {
                 System.out.println("click in map");
 
                 Actor hitActor = hit(x, y, true);
-                if(hitActor instanceof Tile) {
-                    Tile hitTile = (Tile)hitActor;
+                if (hitActor instanceof Tile) {
+                    Tile hitTile = (Tile) hitActor;
                     Vector2 hitTilePos = hitTile.getPositionInParent();
                     setTileAt(
                             (int) hitTilePos.x,

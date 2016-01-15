@@ -41,7 +41,6 @@ public class LoadingScreen extends ScreenAdapter {
         for (FileHandle tileFile : tilesFolder.list(".png")) {
             assetManager.load(tileFile.path(), Texture.class);
         }
-        assetManager.load("core/assets/test_animation.png", Texture.class);
 
         this.spriteBatch = new SpriteBatch();
     }
@@ -62,7 +61,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         //goto new screen if finished
         if (assetManager.getProgress() == 1) {
-            game.setScreen(new MainMenuScreen(game, assetManager));
+            game.setScreen(new GameScreen(game, assetManager));
             dispose();
         }
     }

@@ -34,6 +34,7 @@ public class MapLoader {
         tileSaveNames = new ArrayMap<String, Tile>();
         tileSaveNames.put(".", tileList.GRASS);
         tileSaveNames.put("w", tileList.WOOD);
+        tileSaveNames.put("_", tileList.WATER);
 
         for (Tile tile : tileSaveNames.values()) {
             tile.gameManager = gameManager;
