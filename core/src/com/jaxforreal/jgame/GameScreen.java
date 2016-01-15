@@ -5,11 +5,15 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jaxforreal.jgame.entity.Player;
+import com.jaxforreal.jgame.item.ItemData;
+import com.jaxforreal.jgame.item.ItemEntity;
 import com.jaxforreal.jgame.tile.TileList;
+import com.jaxforreal.jgame.tile.Water;
 
 public class GameScreen extends ScreenAdapter {
     public static GameManager gameManager = new GameManager();
@@ -44,6 +48,14 @@ public class GameScreen extends ScreenAdapter {
         //map = mapLoader.load(33);
         map.addEntityAt(1, 1, player);
         stage.setKeyboardFocus(player);
+
+        ItemData itemData = new ItemData();
+        itemData.gameManager = gameManager;
+        itemData.isPlaceable = false;
+        itemData.onPlaceTile = new Water(gameManager, 45);
+        itemData.texture = assetManager.get("core/assets/tiles/wood.png", Texture.class);
+
+        map.addEntityAt(2, 2, new ItemEntity(itemData));
 
         stage.addActor(map);
     }
