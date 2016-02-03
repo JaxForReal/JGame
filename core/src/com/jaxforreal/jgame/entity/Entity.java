@@ -61,6 +61,7 @@ public abstract class Entity extends Actor implements MyCloneable<Entity> {
 
     /**
      * Attempts to move in the specified Direction
+     * also updates parent map tiles of entity movement
      *
      * @return whether or not the object actually moved (false if collided with solid tile)
      */
@@ -87,6 +88,9 @@ public abstract class Entity extends Actor implements MyCloneable<Entity> {
             //update tracker vars
             isMoving = true;
             timeSinceLastMove = 0f;
+
+            //notify map that an entity moved to new position
+            parentMap.notifyEntityMove(this);
 
             return true;
         }
