@@ -24,7 +24,7 @@ public class Map extends Group {
     private Actor tileActorsPointer = new Actor();
 
     /**
-     * NOTE: tiles are stored in a Tile[x][y] format.
+     * NOTE: tiles are stored in a Tile[x][y] format. Also stored as Actors in this Group
      */
     private Tile[][] tiles;
 
