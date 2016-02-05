@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.GameManager;
+import com.jaxforreal.jgame.entity.Entity;
 
 public class Water extends AnimatedTile {
 
@@ -30,5 +31,9 @@ public class Water extends AnimatedTile {
     @Override
     public boolean isSolid() {
         return true;
+    }
+
+    @Override
+    public void onEntityOver(Entity entity) {
     }
 }

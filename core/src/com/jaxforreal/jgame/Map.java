@@ -81,6 +81,13 @@ public class Map extends Group {
     }
 
     /**
+     * notifies tile under entity that it was stepped on by entity
+     */
+    public void notifyEntityMove(Entity entity) {
+        tiles[(int) entity.getTilePosition().x][(int) entity.getTilePosition().y].onEntityOver(entity);
+    }
+
+    /**
      * Used in MapLoader to init TileMapObjects
      * automagically sets MapObject's parentMap
      * <p/>

@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.MyCloneable;
+import com.jaxforreal.jgame.entity.Entity;
 import com.sun.istack.internal.Nullable;
 
 public abstract class Tile extends Actor implements MyCloneable<Tile> {
@@ -36,6 +37,8 @@ public abstract class Tile extends Actor implements MyCloneable<Tile> {
     public abstract Tile getClone();
 
     public abstract boolean isSolid();
+
+    public abstract void onEntityOver(Entity entity);
 
     /**
      * Returns the tile position in parent map.

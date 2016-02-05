@@ -3,8 +3,11 @@ package com.jaxforreal.jgame.tile;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.jaxforreal.jgame.GameManager;
 import com.jaxforreal.jgame.Util;
+import com.jaxforreal.jgame.entity.Entity;
+import com.jaxforreal.jgame.entity.Player;
 
 /**
  * Simple tile without custom behaviour
@@ -31,5 +34,12 @@ public class SimpleTile extends Tile {
 
     public boolean isSolid() {
         return isSolid;
+    }
+
+    @Override
+    public void onEntityOver(Entity entity) {
+        if(entity instanceof Player) {
+            addAction(Actions.rotateBy(360, 1f));
+        }
     }
 }

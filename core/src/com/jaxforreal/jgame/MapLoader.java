@@ -74,7 +74,14 @@ public class MapLoader {
      * uses Map.setTileAt(...)
      */
     private Map loadTiles(String tileDataPath) {
-        String[] mapLines = Gdx.files.internal(tileDataPath).readString().split("\n");
+        String mapString = Gdx.files.internal(tileDataPath).readString();
+
+        //normalize line endings for windows
+        mapString = mapString.replaceAll("\\r\\n", "\n");
+        //normalize for mac
+        mapString = mapString.replaceAll("\\r", "\n");
+
+        String[] mapLines = mapString.split("\n");
 
         int width = mapLines[0].split(" ").length;
         int height = mapLines.length;

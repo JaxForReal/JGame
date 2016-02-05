@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.jaxforreal.jgame.GameManager;
+import com.jaxforreal.jgame.entity.Entity;
 
 public class TestAnimatedTile extends AnimatedTile {
 
@@ -29,5 +30,9 @@ public class TestAnimatedTile extends AnimatedTile {
     @Override
     public boolean isSolid() {
         return false;
+    }
+
+    @Override
+    public void onEntityOver(Entity entity) {
     }
 }
