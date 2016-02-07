@@ -35,6 +35,8 @@ public abstract class Entity extends Actor implements MyCloneable<Entity> {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        //handle tracking fields
         if (isMoving) {
             timeSinceLastMove += delta;
             if (timeSinceLastMove >= moveDuration) {
