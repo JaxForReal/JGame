@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import com.jaxforreal.jgame.item.ItemContainerScreen;
 
 //TODO make loading indicator resize properly
 public class LoadingScreen extends ScreenAdapter {
@@ -36,6 +37,8 @@ public class LoadingScreen extends ScreenAdapter {
         //need to finish so we can display loaded percentage in render()
         assetManager.finishLoadingAsset("core/assets/font.fnt");
 
+        assetManager.load("core/assets/containerSlot.png", Texture.class);
+
         //load all tile textures
         FileHandle tilesFolder = Gdx.files.internal("core/assets/tiles");
         for (FileHandle tileFile : tilesFolder.list(".png")) {
@@ -61,7 +64,7 @@ public class LoadingScreen extends ScreenAdapter {
 
         //goto new screen if finished
         if (assetManager.getProgress() == 1) {
-            game.setScreen(new GameScreen(game, assetManager));
+            game.setScreen(new ItemContainerScreen(assetManager));
             dispose();
         }
     }
